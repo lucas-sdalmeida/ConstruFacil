@@ -20,9 +20,10 @@ public class Purchase {
         this.products = products;
     }
 
-    /*void public calculateTotal(){
-
-    }*/
+    //Método que adiciona um novo produto a lista
+    public void addProduct(Product p){
+        products.add(p);
+    }
 
     public long getId() {
         return id;
