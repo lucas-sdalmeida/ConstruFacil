@@ -24,19 +24,11 @@ public class Purchase {
         products.add(p);
     }
 
-    public void CalculateProduct(){
+    public void calculateProduct(){
         double sum = 0;
         for (Product product : products){
             sum = product.getPurchaseSale() + sum;
         }
-    }
-
-    public void UpdateStock(){
-
-    }
-
-    public void UpdateCashDesk(){
-
     }
 
     public long getId() {

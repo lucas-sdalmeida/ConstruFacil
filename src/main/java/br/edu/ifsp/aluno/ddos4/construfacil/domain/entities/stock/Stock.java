@@ -7,7 +7,11 @@ import java.util.List;
 public class Stock {
     List<Product> products;
 
-    public void StoreProduct(Product product){
+    public Stock(List<Product> products) {
+        this.products = products;
+    }
+
+    public void storeProduct(Product product){
         products.add(product);
     }
 }
