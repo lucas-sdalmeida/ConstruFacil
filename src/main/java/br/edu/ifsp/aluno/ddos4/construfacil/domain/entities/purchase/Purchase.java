@@ -6,14 +6,14 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier;
 import java.util.Date;
 import java.util.List;
 
-public class Compra {
+public class Purchase {
     private long id;
     private Date date;
     private supplier supplier;
     private List<Product> products;
 
 
-    public Compra(long id, Date date, br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier supplier, List<Product> products) {
+    public Purchase(long id, Date date, br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier supplier, List<Product> products) {
         this.id = id;
         this.date = date;
         this.supplier = supplier;
