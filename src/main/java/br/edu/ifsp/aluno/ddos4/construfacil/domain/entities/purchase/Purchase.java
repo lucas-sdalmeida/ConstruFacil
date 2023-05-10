@@ -20,6 +20,10 @@ public class Purchase {
         this.products = products;
     }
 
+    /*void public calculateTotal(){
+
+    }*/
+
     public long getId() {
         return id;
     }
