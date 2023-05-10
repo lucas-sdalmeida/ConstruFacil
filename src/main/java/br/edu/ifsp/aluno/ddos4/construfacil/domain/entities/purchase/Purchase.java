@@ -20,9 +20,23 @@ public class Purchase {
         this.products = products;
     }
 
-    //Método que adiciona um novo produto a lista
     public void addProduct(Product p){
         products.add(p);
+    }
+
+    public void CalculateProduct(){
+        double sum = 0;
+        for (Product product : products){
+            sum = product.getPurchaseSale() + sum;
+        }
+    }
+
+    public void UpdateStock(){
+
+    }
+
+    public void UpdateCashDesk(){
+
     }
 
     public long getId() {

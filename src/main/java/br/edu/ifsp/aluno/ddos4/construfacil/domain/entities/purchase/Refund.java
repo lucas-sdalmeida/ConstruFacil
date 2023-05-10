@@ -1,6 +1,5 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase;
 
-/*Estorno de Compra*/
 public class Refund {
     private long id;
 
