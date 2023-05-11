@@ -2,14 +2,14 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product;
 
 public class Product {
     private long id;
-    private String nome;
+    private String name;
     private int quantity;
     private double purchasePrice;
     private double purchaseSale;
 
-    public Product(long id, String nome, int quantity, double purchasePrice, double purchaseSale) {
+    public Product(long id, String name, int quantity, double purchasePrice, double purchaseSale) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.quantity = quantity;
         this.purchasePrice = purchasePrice;
         this.purchaseSale = purchaseSale;
@@ -23,12 +23,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getQuantity() {

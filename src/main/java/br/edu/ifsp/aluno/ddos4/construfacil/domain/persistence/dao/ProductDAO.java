@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface ProductDAO extends DAO<Product>{
     @Override
-    void save(Product type);
+    void save(Product product);
 
     @Override
-    void update(Product type);
+    void update(Product product);
 
     @Override
     List<Product> search(int id);
