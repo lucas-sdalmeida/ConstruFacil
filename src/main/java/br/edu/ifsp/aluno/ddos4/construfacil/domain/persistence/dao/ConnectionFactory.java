@@ -2,29 +2,36 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class ConnectionFactory {
-    private static ConnectionFactory INSTANCE;
+public class ConnectionFactory implements AutoCloseable {
+    private static PreparedStatement stmt = null;
+    private static Connection conn  = null;
 
-    private static final String URL = "jdbc:sqlite:/caminho/para/o/arquivo.db";
-
-    private ConnectionFactory() {
+    public  static Connection createConnection() {
         try {
-            Class.forName("org.sqlite.JDBC");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Driver SQLite não encontrado", e);
+            if(conn == null)
+                conn = DriverManager.getConnection("jdbc:sqlite:memory.bd");
+        }catch (SQLException e){
+            e.printStackTrace();
         }
+        return conn;
     }
 
-    public static synchronized ConnectionFactory getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new ConnectionFactory();
-        }
-        return INSTANCE;
+    public static PreparedStatement createStatement(String sql){
+        try {stmt = createConnection().prepareStatement(sql);}
+        catch (SQLException e)
+        { e.printStackTrace();}
+        return stmt;
     }
 
-        public Connection getConnection() throws SQLException {
-            return DriverManager.getConnection(URL);
-        }
+    @Override
+    public void close() throws Exception {
+        if(conn != null)
+            conn.close();
+        if(stmt != null)
+            stmt.close();
+    }
+
 }
