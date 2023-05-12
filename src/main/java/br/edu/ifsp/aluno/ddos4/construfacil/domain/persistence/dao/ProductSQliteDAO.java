@@ -26,7 +26,7 @@ public class ProductSQliteDAO implements ProductDAO{
 
     @Override
     public void update(Product product) {
-        String sql = "UPDATE product set name=?, quantity=?, purchasePrice=?, purchaseSale=?" +
+        String sql = "UPDATE product SET name=?, quantity=?, purchasePrice=?, purchaseSale=?" +
                 "WHERE id=?";
         try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
             stmt.setString(1, product.getName());
@@ -39,12 +39,12 @@ public class ProductSQliteDAO implements ProductDAO{
     }
 
     @Override
-    public Product serach(int id) {
+    public Product search(int id) {
         String sql = "SELECT * FROM product WHERE id=?";
         Product product = null;
             try (PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
                 stmt.setInt(1, id);
-                ResultSet rs =stmt.executeQuery();
+                ResultSet rs = stmt.executeQuery();
                 while (rs.next()){
                     product = new Product(rs.getLong("id"), rs.getString("name"),
                             rs.getInt("quantity"), rs.getDouble("purchasePrice"),

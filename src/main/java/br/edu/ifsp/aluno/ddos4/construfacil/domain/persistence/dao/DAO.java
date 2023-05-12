@@ -5,5 +5,5 @@ import java.util.List;
 public interface DAO <T>{
     void save(T type);
     void update(T type);
-    T serach(int id);
+    T search(int id);
 }

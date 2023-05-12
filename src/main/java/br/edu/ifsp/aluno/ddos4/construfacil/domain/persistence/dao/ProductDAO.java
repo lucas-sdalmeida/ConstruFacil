@@ -10,5 +10,5 @@ public interface ProductDAO extends DAO<Product>{
     void update(Product product);
 
     @Override
-    Product serach(int id);
+    Product search(int id);
 }
