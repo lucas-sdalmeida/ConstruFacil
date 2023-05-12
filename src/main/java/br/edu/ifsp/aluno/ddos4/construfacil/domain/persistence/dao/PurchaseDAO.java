@@ -12,5 +12,5 @@ public interface PurchaseDAO extends DAO<Purchase>{
     void update(Purchase type);
 
     @Override
-    List<Purchase> search(int id);
+    Purchase serach(int id);
 }
