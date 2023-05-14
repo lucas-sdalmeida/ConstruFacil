@@ -39,9 +39,7 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public double getPurchasePrice() {
-        return purchasePrice;
-    }
+    public double getPurchasePrice() {return purchasePrice;}
 
     public void setPurchasePrice(double purchasePrice) {
         this.purchasePrice = purchasePrice;

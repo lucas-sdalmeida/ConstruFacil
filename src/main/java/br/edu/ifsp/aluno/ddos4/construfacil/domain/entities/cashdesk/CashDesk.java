@@ -20,35 +20,19 @@ public class CashDesk {
         this.saleRefunds = saleRefunds;
     }
 
-    public List<Sale> getSales() {
-        return sales;
-    }
+    public List<Sale> getSales() {return sales;}
 
-    public void setSales(List<Sale> sales) {
-        this.sales = sales;
-    }
+    public void setSales(List<Sale> sales) {this.sales = sales;}
 
-    public List<Purchase> getPurchases() {
-        return purchases;
-    }
+    public List<Purchase> getPurchases() {return purchases;}
 
-    public void setPurchases(List<Purchase> purchases) {
-        this.purchases = purchases;
-    }
+    public void setPurchases(List<Purchase> purchases) {this.purchases = purchases;}
 
-    public List<Refund> getRefunds() {
-        return refunds;
-    }
+    public List<Refund> getRefunds() {return refunds;}
 
-    public void setRefunds(List<Refund> refunds) {
-        this.refunds = refunds;
-    }
+    public void setRefunds(List<Refund> refunds) {this.refunds = refunds;}
 
-    public List<SaleRefund> getSaleRefunds() {
-        return saleRefunds;
-    }
+    public List<SaleRefund> getSaleRefunds() {return saleRefunds;}
 
-    public void setSaleRefunds(List<SaleRefund> saleRefunds) {
-        this.saleRefunds = saleRefunds;
-    }
+    public void setSaleRefunds(List<SaleRefund> saleRefunds) {this.saleRefunds = saleRefunds;}
 }

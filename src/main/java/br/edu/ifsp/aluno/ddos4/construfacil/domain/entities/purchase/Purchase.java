@@ -51,9 +51,7 @@ public class Purchase {
         return supplier;
     }
 
-    public void setSupplier(br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier supplier) {
-        this.supplier = supplier;
-    }
+    public void setSupplier(br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier supplier) {this.supplier = supplier;}
 
     public List<Product> getProducts() {
         return products;

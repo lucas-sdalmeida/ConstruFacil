@@ -8,6 +8,14 @@ public class Customer {
     private String Address;
     private String PhoneNumber;
 
+    public Customer(Long ID, String name, String CPF, String address, String phoneNumber) {
+        this.ID = ID;
+        Name = name;
+        this.CPF = CPF;
+        Address = address;
+        PhoneNumber = phoneNumber;
+    }
+
     public Long getID() {
         return ID;
     }
