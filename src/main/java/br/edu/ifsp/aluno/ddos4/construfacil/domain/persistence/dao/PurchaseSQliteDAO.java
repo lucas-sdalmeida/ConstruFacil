@@ -3,7 +3,6 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.Purchase;
 
 import java.sql.*;
-import java.util.List;
 
 public class PurchaseSQliteDAO implements PurchaseDAO{
     @Override
@@ -12,7 +11,7 @@ public class PurchaseSQliteDAO implements PurchaseDAO{
         try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
             stmt.setLong(1, purchase.getId());
             stmt.setDate(2, (Date) purchase.getDate());
-            stmt.setLong(3, purchase.getSupplier().getID());
+            stmt.setLong(3, purchase.getSupplier().getId());
             //stmt.setArray(4, (Array) purchase.getProducts());
             stmt.executeUpdate();
         }catch (SQLException e){
@@ -25,7 +24,7 @@ public class PurchaseSQliteDAO implements PurchaseDAO{
         String sql = "UPDATE purchase SET data=?, supplier=?, products=? WHERE id=?";
         try (PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
             stmt.setDate(1, (Date) purchase.getDate());
-            stmt.setLong(2, purchase.getSupplier().getID());
+            stmt.setLong(2, purchase.getSupplier().getId());
             //stmt.setLong(3, purchase.getProducts());
             stmt.setLong(4, purchase.getId());
             stmt.executeUpdate();

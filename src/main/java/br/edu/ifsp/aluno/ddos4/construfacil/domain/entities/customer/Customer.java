@@ -1,58 +1,64 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer;
 
 public class Customer {
+    private long id;
+    private String name;
+    private String cpf;
+    private String address;
+    private String phoneNumber;
 
-    private Long ID;
-    private String Name;
-    private String CPF;
-    private String Address;
-    private String PhoneNumber;
-
-    public Customer(Long ID, String name, String CPF, String address, String phoneNumber) {
-        this.ID = ID;
-        Name = name;
-        this.CPF = CPF;
-        Address = address;
-        PhoneNumber = phoneNumber;
+    public Customer(long id, String name, String cpf, String address, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
-    public Long getID() {
-        return ID;
+    public Customer(String name, String cpf, String address, String phoneNumber) {
+        this.name = name;
+        this.cpf = cpf;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public String getPhoneNumber() {
-        return PhoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        PhoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 }

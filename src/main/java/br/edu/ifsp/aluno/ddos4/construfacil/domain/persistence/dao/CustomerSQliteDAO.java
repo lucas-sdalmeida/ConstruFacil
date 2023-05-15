@@ -13,9 +13,9 @@ public class CustomerSQliteDAO implements CustomerDAO{
         String sql = "INSERT INTO customer (id, name, cpf, address, phoneNumber) " +
                 "VALUES (?, ?, ?, ?, ?)";
         try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
-            stmt.setLong(1, customer.getID());
+            stmt.setLong(1, customer.getId());
             stmt.setString(2, customer.getName());
-            stmt.setString(3, customer.getCPF());
+            stmt.setString(3, customer.getCpf());
             stmt.setString(4, customer.getAddress());
             stmt.setString(5, customer.getPhoneNumber());
             stmt.executeUpdate();
@@ -29,10 +29,10 @@ public class CustomerSQliteDAO implements CustomerDAO{
         String sql = "UPDATE customer SET name=?, cpf=?, address=?, phoneNumber=? WHERE id=?";
         try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)) {
             stmt.setString(1, customer.getName());
-            stmt.setString(2, customer.getCPF());
+            stmt.setString(2, customer.getCpf());
             stmt.setString(3, customer.getAddress());
             stmt.setString(4, customer.getPhoneNumber());
-            stmt.setLong(5, customer.getID());
+            stmt.setLong(5, customer.getId());
             stmt.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();

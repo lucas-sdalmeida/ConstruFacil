@@ -1,34 +1,52 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
-import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.Supplier;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Purchase {
     private long id;
-    private Date date;
-    private supplier supplier;
-    private List<Product> products;
+    private final LocalDate date;
+    private final Supplier supplier;
+    private final Map<Product, PurchaseItem> items = new HashMap<>();
 
-
-    public Purchase(long id, Date date, br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier supplier, List<Product> products) {
+    public Purchase(long id, LocalDate date, Supplier supplier) {
         this.id = id;
         this.date = date;
         this.supplier = supplier;
-        this.products = products;
     }
 
-    public void addProduct(Product p){
-        products.add(p);
+    public Purchase(LocalDate date, Supplier supplier) {
+        this.date = date;
+        this.supplier = supplier;
     }
 
-    public void calculateProduct(){
-        double sum = 0;
-        for (Product product : products){
-            sum = product.getPurchaseSale() + sum;
+    public double getTotalPrice() {
+        return items.values()
+                .stream()
+                .mapToDouble(PurchaseItem::getTotalPrice)
+                .sum();
+    }
+
+    public void addProduct(Product product, double actualPrice) {
+        Objects.requireNonNull(product);
+
+        if (items.containsKey(product)) {
+            items.get(product).increaseQuantityByOne();
+            return;
         }
+
+        items.put(product, new PurchaseItem(product, 1, actualPrice));
+    }
+
+    public void removeProduct(Product product) {
+        Objects.requireNonNull(product);
+
+        items.remove(product);
     }
 
     public long getId() {
@@ -39,25 +57,11 @@ public class Purchase {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier getSupplier() {
+    public Supplier getSupplier() {
         return supplier;
-    }
-
-    public void setSupplier(br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.supplier supplier) {this.supplier = supplier;}
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }

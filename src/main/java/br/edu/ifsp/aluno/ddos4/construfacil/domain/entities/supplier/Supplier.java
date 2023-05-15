@@ -1,16 +1,19 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier;
 
 public class Supplier {
-
     private long id;
-    private String companyName;
-    private String cnpj;
-    private String telephone;
+    private String corporateName;
+    private String phoneNumber;
 
-    public Supplier(long id, String razaoSocial, String cnpj, String telefone) {
-        this.companyName = razaoSocial;
-        this.cnpj = cnpj;
-        this.telephone = telefone;
+    public Supplier(long id, String corporateName, String phoneNumber) {
+        this.id = id;
+        this.corporateName = corporateName;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Supplier(String corporateName, String phoneNumber) {
+        this.corporateName = corporateName;
+        this.phoneNumber = phoneNumber;
     }
 
     public long getId() {
@@ -21,28 +24,19 @@ public class Supplier {
         this.id = id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public String getCorporateName() {
+        return corporateName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setCorporateName(String corporateName) {
+        this.corporateName = corporateName;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
 }

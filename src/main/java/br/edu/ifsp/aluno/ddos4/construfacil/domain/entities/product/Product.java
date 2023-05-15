@@ -1,18 +1,24 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product;
 
+import java.util.Objects;
+
 public class Product {
     private long id;
     private String name;
-    private int quantity;
-    private double purchasePrice;
-    private double purchaseSale;
+    private double defaultPurchasePrice;
+    private double defaultSalePrice;
 
-    public Product(long id, String name, int quantity, double purchasePrice, double purchaseSale) {
+    public Product(long id, String name, double defaultPurchasePrice, double defaultSalePrice) {
         this.id = id;
         this.name = name;
-        this.quantity = quantity;
-        this.purchasePrice = purchasePrice;
-        this.purchaseSale = purchaseSale;
+        this.defaultPurchasePrice = defaultPurchasePrice;
+        this.defaultSalePrice = defaultSalePrice;
+    }
+
+    public Product(String name, double defaultPurchasePrice, double defaultSalePrice) {
+        this.name = name;
+        this.defaultPurchasePrice = defaultPurchasePrice;
+        this.defaultSalePrice = defaultSalePrice;
     }
 
     public long getId() {
@@ -31,25 +37,30 @@ public class Product {
         this.name = name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public double getDefaultPurchasePrice() {return defaultPurchasePrice;}
+
+    public void setDefaultPurchasePrice(double defaultPurchasePrice) {
+        this.defaultPurchasePrice = defaultPurchasePrice;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public double getDefaultSalePrice() {
+        return defaultSalePrice;
     }
 
-    public double getPurchasePrice() {return purchasePrice;}
-
-    public void setPurchasePrice(double purchasePrice) {
-        this.purchasePrice = purchasePrice;
+    public void setDefaultSalePrice(double defaultSalePrice) {
+        this.defaultSalePrice = defaultSalePrice;
     }
 
-    public double getPurchaseSale() {
-        return purchaseSale;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id && name.equals(product.name);
     }
 
-    public void setPurchaseSale(double purchaseSale) {
-        this.purchaseSale = purchaseSale;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
