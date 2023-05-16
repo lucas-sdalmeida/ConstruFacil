@@ -15,6 +15,8 @@ public class SupplierValidator extends Validator<Supplier> {
 
         if (Validator.isNullOrEmpty(supplier.getCorporateName()))
             notification.addMessage("Supplier's corporate name is required!");
+        if (Validator.isNullOrEmpty(supplier.getCnpj()))
+            notification.addMessage("Supplier's corporate name is required!");
         if (Validator.isNullOrEmpty(supplier.getPhoneNumber()))
             notification.addMessage("Supplier's phone number is required!");
 

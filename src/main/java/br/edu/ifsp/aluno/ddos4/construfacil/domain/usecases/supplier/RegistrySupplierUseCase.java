@@ -24,7 +24,7 @@ public class RegistrySupplierUseCase {
         if (notification.hasMessages())
             throw new IllegalArgumentException(notification.getMessagesAsString());
 
-        supplierDAO.findOneByCorporateName(supplier.getCorporateName())
+        supplierDAO.findOneByCNPJ(supplier.getCorporateName())
                 .ifPresent(s -> {
                     throw new EntityAlreadyExistsException(
                         "A supplier with name '" + supplier.getCorporateName() +
@@ -34,7 +34,7 @@ public class RegistrySupplierUseCase {
 
         supplierDAO.save(supplier);
         long supplierId = supplierDAO
-                                .findOneByCorporateName(supplier.getCorporateName())
+                                .findOneByCNPJ(supplier.getCorporateName())
                                 .orElseThrow(() ->
                                         new EntityNotFoundException("The supplier has not been registered!")
                                 )

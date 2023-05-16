@@ -7,5 +7,5 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface SupplierDAO extends DAO<Long, Supplier> {
-    Optional<Supplier> findOneByCorporateName(String corporateName);
+    Optional<Supplier> findOneByCNPJ(String corporateName);
 }
