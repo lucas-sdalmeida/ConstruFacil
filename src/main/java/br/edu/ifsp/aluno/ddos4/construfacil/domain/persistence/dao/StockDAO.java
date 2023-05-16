@@ -3,13 +3,19 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.stock.Stock;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.DAO;
 
-public interface StockDAO extends DAO<Stock> {
+import java.util.Map;
+import java.util.Optional;
+
+public interface StockDAO extends DAO<Long, Stock> {
     @Override
-    void save(Stock stock);
+    Long save(Stock type);
 
     @Override
-    void update(Stock stock);
+    void update(Stock type);
 
     @Override
-    Stock search(int id);
+    Optional<Stock> findOneByKey(Long id);
+
+    @Override
+    Map<Long, Stock> findAll();
 }
