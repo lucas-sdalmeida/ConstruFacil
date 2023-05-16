@@ -9,15 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface SaleDAO extends DAO<Long, Sale> {
-    @Override
-    void save(Sale type);
-
-    @Override
-    void update(Sale type);
-
-    @Override
-    Optional<Sale> findOneByKey(Long id);
-
     Map<Long, Sale> findSomeByDate(LocalDate date);
 
     Map<Long, Sale> findSomeByCustomer(Customer customer);

@@ -7,14 +7,5 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface SupplierDAO extends DAO<Long, Supplier> {
-    @Override
-    void save(Supplier type);
-
-    @Override
-    void update(Supplier type);
-
     Optional<Supplier> findOneByCorporateName(String corporateName);
-
-    @Override
-    Map<Long, Supplier> findAll();
 }

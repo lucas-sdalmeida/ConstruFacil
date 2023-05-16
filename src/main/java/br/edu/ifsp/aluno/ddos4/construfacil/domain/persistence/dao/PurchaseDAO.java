@@ -9,15 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface PurchaseDAO extends DAO<Long, Purchase> {
-    @Override
-    void save(Purchase type);
-
-    @Override
-    void update(Purchase type);
-
-    @Override
-    Optional<Purchase> findOneByKey(Long id);
-
     Map<Long, Purchase> findSomeByDate(LocalDate date);
 
     Map<Long, Purchase> findSomeBySupplier(Supplier supplier);

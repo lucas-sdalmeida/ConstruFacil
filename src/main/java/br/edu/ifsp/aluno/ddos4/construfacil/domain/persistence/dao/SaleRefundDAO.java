@@ -8,14 +8,5 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface SaleRefundDAO extends DAO<Long, SaleRefund> {
-    @Override
-    void save(SaleRefund type);
-
-    @Override
-    void update(SaleRefund type);
-
     Optional<SaleRefund> findOneBySale(Sale Sale);
-
-    @Override
-    Map<Long, SaleRefund> findAll();
 }

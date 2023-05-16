@@ -8,13 +8,4 @@ import java.util.Optional;
 
 public interface CustomerDAO extends DAO<Long, Customer> {
     Optional<Customer> findOneByCPF(String cpf);
-
-    @Override
-    void save(Customer type);
-
-    @Override
-    void update(Customer type);
-
-    @Override
-    Map<Long, Customer> findAll();
 }
