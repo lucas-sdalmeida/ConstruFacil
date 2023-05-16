@@ -48,7 +48,7 @@ public class DAOSupplier implements SupplierDAO {
     }
 
     @Override
-    public Optional<Supplier> findOneByCorporateName(String corporateName) {
+    public Optional<Supplier> findOneByCNPJ(String corporateName) {
         return Optional.empty();
     }
 
