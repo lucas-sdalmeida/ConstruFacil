@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface DAO <K, T>{
-    K save(T type);
+    void save(T type);
 
     void update(T type);
 
