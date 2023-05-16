@@ -1,15 +1,15 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase;
 
-public class Refund {
+public class PurchaseRefund {
     private long id;
     private final Purchase purchase;
 
-    public Refund(long id, Purchase purchase) {
+    public PurchaseRefund(long id, Purchase purchase) {
         this.id = id;
         this.purchase = purchase;
     }
 
-    public Refund(Purchase purchase) {
+    public PurchaseRefund(Purchase purchase) {
         this.purchase = purchase;
     }
 
