@@ -1,18 +1,21 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
+import br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.util.SQLiteConnectionFactory;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer.Customer;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerSQliteDAO implements CustomerDAO{
-
     @Override
     public void save(Customer customer) {
         String sql = "INSERT INTO customer (id, name, cpf, address, phoneNumber) " +
                 "VALUES (?, ?, ?, ?, ?)";
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
+        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
+
+        try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
             stmt.setLong(1, customer.getId());
             stmt.setString(2, customer.getName());
             stmt.setString(3, customer.getCpf());
