@@ -1,14 +1,22 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer.Customer;
+<<<<<<< Updated upstream:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/domain/persistence/dao/CustomerSQliteDAO.java
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
+=======
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.CustomerDAO;
+>>>>>>> Stashed changes:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/application/repositories/sqlite/dao/CustomerSQliteDAO.java
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+<<<<<<< Updated upstream:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/domain/persistence/dao/CustomerSQliteDAO.java
 
 public class CustomerSQliteDAO implements CustomerDAO{
+=======
+public class CustomerSQliteDAO implements CustomerDAO {
+>>>>>>> Stashed changes:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/application/repositories/sqlite/dao/CustomerSQliteDAO.java
 
     @Override
     public void save(Customer customer) {

@@ -1,8 +1,9 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.stock.Stock;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.StockDAO;
 
-public class StockSQliteDAO implements StockDAO{
+public class StockSQliteDAO implements StockDAO {
 
     @Override
     public void save(Stock stock) {

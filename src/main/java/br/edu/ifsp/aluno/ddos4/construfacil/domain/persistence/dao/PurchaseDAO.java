@@ -1,14 +1,10 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.Purchase;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.DAO;
 
-public interface PurchaseDAO extends DAO<Purchase>{
-    @Override
-    void save(Purchase type);
+import java.util.Optional;
 
-    @Override
-    void update(Purchase type);
+public interface PurchaseDAO extends DAO<Long, Purchase> {
 
-    @Override
-    Purchase search(int id);
 }

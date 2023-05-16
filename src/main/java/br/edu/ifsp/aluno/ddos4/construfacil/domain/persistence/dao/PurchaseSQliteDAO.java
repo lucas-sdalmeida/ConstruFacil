@@ -1,12 +1,20 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.Purchase;
+<<<<<<< Updated upstream:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/domain/persistence/dao/PurchaseSQliteDAO.java
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
 
 import java.sql.*;
 
 
 public class PurchaseSQliteDAO implements PurchaseDAO{
+=======
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.PurchaseDAO;
+
+import java.sql.*;
+
+public class PurchaseSQliteDAO implements PurchaseDAO {
+>>>>>>> Stashed changes:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/application/repositories/sqlite/dao/PurchaseSQliteDAO.java
     @Override
     public void save(Purchase purchase) {
         String sql = "INSERT INTO purchase (id, date, supplier, products) VALUES (?, ?, ?, ?)";

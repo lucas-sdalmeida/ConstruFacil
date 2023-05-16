@@ -1,13 +1,17 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
+<<<<<<< Updated upstream:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/domain/persistence/dao/ProductSQliteDAO.java
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
+=======
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.ProductDAO;
+>>>>>>> Stashed changes:src/main/java/br/edu/ifsp/aluno/ddos4/construfacil/application/repositories/sqlite/dao/ProductSQliteDAO.java
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductSQliteDAO implements ProductDAO{
+public class ProductSQliteDAO implements ProductDAO {
     @Override
     public void save(Product product) {
         String sql = "INSERT INTO product (id, name, quantity, purchasePrice, purchaseSale)  " +

@@ -1,14 +1,10 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.DAO;
 
-public interface ProductDAO extends DAO<Product>{
-    @Override
-    void save(Product product);
+import java.util.Optional;
 
-    @Override
-    void update(Product product);
-
-    @Override
-    Product search(int id);
+public interface ProductDAO extends DAO<Long, Product> {
+    Optional<Product> findOneByName(String name);
 }
