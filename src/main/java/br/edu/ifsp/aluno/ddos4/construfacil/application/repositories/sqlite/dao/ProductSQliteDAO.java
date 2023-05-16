@@ -1,17 +1,22 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
+import br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.util.SQLiteConnectionFactory;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.Optional;
 
 public class ProductSQliteDAO implements ProductDAO{
     @Override
     public void save(Product product) {
         String sql = "INSERT INTO product (id, name, quantity, purchasePrice, purchaseSale)  " +
                 "VALUES (?, ?, ?, ?, ?)";
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
+        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
+        try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
             stmt.setLong(1, product.getId());
             stmt.setString(2, product.getName());
             stmt.setInt(3, product.getQuantity());
@@ -27,7 +32,8 @@ public class ProductSQliteDAO implements ProductDAO{
     public void update(Product product) {
         String sql = "UPDATE product SET name=?, quantity=?, purchasePrice=?, purchaseSale=?" +
                 "WHERE id=?";
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
+        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
+        try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
             stmt.setString(1, product.getName());
             stmt.setInt(2, product.getQuantity());
             stmt.setDouble(3, product.getDefaultPurchasePrice());
@@ -36,22 +42,18 @@ public class ProductSQliteDAO implements ProductDAO{
             e.printStackTrace();
         }
     }
+    @Override
+    public Optional<Product> findOneByName(String name) {
+        return Optional.empty();
+    }
 
     @Override
-    public Product search(int id) {
-        String sql = "SELECT * FROM product WHERE id=?";
-        Product product = null;
-            try (PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
-                stmt.setInt(1, id);
-                ResultSet rs = stmt.executeQuery();
-                while (rs.next()){
-                    product = new Product(rs.getLong("id"), rs.getString("name"),
-                            rs.getInt("quantity"), rs.getDouble("purchasePrice"),
-                            rs.getDouble("purchaseSale"));
-                }
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
-        return product;
+    public Optional<Product> findOneByKey(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Map<Long, Product> findAll() {
+        return null;
     }
 }

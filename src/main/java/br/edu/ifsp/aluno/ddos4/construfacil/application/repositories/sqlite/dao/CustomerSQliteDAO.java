@@ -7,6 +7,8 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFa
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
+import java.util.Optional;
 
 public class CustomerSQliteDAO implements CustomerDAO{
     @Override
@@ -30,7 +32,8 @@ public class CustomerSQliteDAO implements CustomerDAO{
     @Override
     public void update(Customer customer) {
         String sql = "UPDATE customer SET name=?, cpf=?, address=?, phoneNumber=? WHERE id=?";
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)) {
+        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
+        try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getCpf());
             stmt.setString(3, customer.getAddress());
@@ -43,21 +46,17 @@ public class CustomerSQliteDAO implements CustomerDAO{
     }
 
     @Override
-    public Customer search(int id) {
-        String sql = "SELECT * FROM customer WHERE id=?";
-        Customer customer;
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)) {
-            stmt.setLong(1, id);
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()){
-                customer = new Customer(rs.getLong("id"), rs.getString("name"),
-                        rs.getString("cpf"), rs.getString("address"),
-                        rs.getString("phoneNumber"));
-            }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
+    public Optional<Customer> findOneByKey(Long id) {
+        return Optional.empty();
+    }
 
+    @Override
+    public Map<Long, Customer> findAll() {
         return null;
+    }
+
+    @Override
+    public Optional<Customer> findOneByCPF(String cpf) {
+        return Optional.empty();
     }
 }
