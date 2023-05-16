@@ -1,14 +1,10 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.Supplier;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.DAO;
 
-public interface SupplierDAO extends DAO<Supplier> {
-    @Override
-    void save(Supplier supplier);
+import java.util.Optional;
 
-    @Override
-    void update(Supplier supplier);
-
-    @Override
-    Supplier search(int id);
+public interface SupplierDAO extends DAO<Long, Supplier> {
+    Optional<Supplier> findOneByCorporateName(String corporateName);
 }
