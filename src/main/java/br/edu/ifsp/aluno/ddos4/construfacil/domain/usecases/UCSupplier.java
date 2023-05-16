@@ -1,9 +1,9 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases;
 
-import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.DAOSupplier;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.SupplierDAO;
 
 public class UCSupplier {
-    private DAOSupplier daoSupplier;
+    private SupplierDAO daoSupplier;
 
     /*  Aguardando futura implementação
     public void createSupplier(Supplier supplier){

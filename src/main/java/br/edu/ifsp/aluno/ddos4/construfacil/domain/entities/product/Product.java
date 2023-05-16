@@ -5,12 +5,14 @@ import java.util.Objects;
 public class Product {
     private long id;
     private String name;
+    private int quantity;
     private double defaultPurchasePrice;
     private double defaultSalePrice;
 
-    public Product(long id, String name, double defaultPurchasePrice, double defaultSalePrice) {
+    public Product(long id, String name, int quantity,double defaultPurchasePrice, double defaultSalePrice) {
         this.id = id;
         this.name = name;
+        this.quantity = quantity;
         this.defaultPurchasePrice = defaultPurchasePrice;
         this.defaultSalePrice = defaultSalePrice;
     }
@@ -35,6 +37,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getDefaultPurchasePrice() {return defaultPurchasePrice;}

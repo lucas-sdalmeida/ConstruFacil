@@ -1,10 +1,12 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer.Customer;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 public class CustomerSQliteDAO implements CustomerDAO{
 
@@ -12,7 +14,7 @@ public class CustomerSQliteDAO implements CustomerDAO{
     public void save(Customer customer) {
         String sql = "INSERT INTO customer (id, name, cpf, address, phoneNumber) " +
                 "VALUES (?, ?, ?, ?, ?)";
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)){
+        try(PreparedStatement stmt = ConnectionFactory.getPreparedStatement(sql)) {
             stmt.setLong(1, customer.getId());
             stmt.setString(2, customer.getName());
             stmt.setString(3, customer.getCpf());
@@ -27,7 +29,7 @@ public class CustomerSQliteDAO implements CustomerDAO{
     @Override
     public void update(Customer customer) {
         String sql = "UPDATE customer SET name=?, cpf=?, address=?, phoneNumber=? WHERE id=?";
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)) {
+        try(PreparedStatement stmt = ConnectionFactory.getPreparedStatement(sql)) {
             stmt.setString(1, customer.getName());
             stmt.setString(2, customer.getCpf());
             stmt.setString(3, customer.getAddress());
@@ -43,7 +45,7 @@ public class CustomerSQliteDAO implements CustomerDAO{
     public Customer search(int id) {
         String sql = "SELECT * FROM customer WHERE id=?";
         Customer customer;
-        try(PreparedStatement stmt = ConnectionFactory.createStatement(sql)) {
+        try(PreparedStatement stmt = ConnectionFactory.getPreparedStatement(sql)) {
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()){
