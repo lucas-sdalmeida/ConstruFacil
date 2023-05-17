@@ -16,12 +16,13 @@ public class ProductValidator extends Validator<Product> {
 
         if(Validator.isNullOrEmpty(product.getName()))
             notification.addMessage("Product's name is required!");
-        if (Validator.isNullOrEmpty(product.getQuantity()))
-            notification.addMessage("Product's quantity is required!");
-        if(Validator.isNullOrEmpty(product.getDefaultPurchasePrice()))
-            notification.addMessage("Product's default purchase price is required!");
-        if (Validator.isNullOrEmpty(product.getDefaultSalePrice()))
-            notification.addMessage("Product's sale price is required!");
+        if (product.getQuantity() < 0)
+            notification.addMessage("Product's quantity cannot be a negative value!");
+        if(product.getDefaultPurchasePrice() <= 0)
+            notification.addMessage("Product's default purchase price cannot be 0 or lower!");
+        if (product.getDefaultSalePrice() <= 0)
+            notification.addMessage("Product's sale price cannot be 0 or lower!");
+
         return notification;
     }
 }

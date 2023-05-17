@@ -39,7 +39,7 @@ public class Product {
         this.name = name;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
@@ -47,13 +47,13 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getDefaultPurchasePrice() {return defaultPurchasePrice;}
+    public double getDefaultPurchasePrice() {return defaultPurchasePrice;}
 
     public void setDefaultPurchasePrice(double defaultPurchasePrice) {
         this.defaultPurchasePrice = defaultPurchasePrice;
     }
 
-    public String getDefaultSalePrice() {
+    public double getDefaultSalePrice() {
         return defaultSalePrice;
     }
 
