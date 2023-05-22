@@ -3,13 +3,13 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product;
 import java.util.Objects;
 
 public class Product {
-    private long id;
+    private Long id;
     private String name;
     private int quantity;
     private double defaultPurchasePrice;
     private double defaultSalePrice;
 
-    public Product(long id, String name, int quantity,double defaultPurchasePrice, double defaultSalePrice) {
+    public Product(Long id, String name, int quantity, double defaultPurchasePrice, double defaultSalePrice) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -27,7 +27,7 @@ public class Product {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

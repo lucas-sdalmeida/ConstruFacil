@@ -9,12 +9,12 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Purchase {
-    private long id;
+    private Long id;
     private final LocalDate date;
     private final Supplier supplier;
     private final Map<Product, PurchaseItem> items = new HashMap<>();
 
-    public Purchase(long id, LocalDate date, Supplier supplier) {
+    public Purchase(Long id, LocalDate date, Supplier supplier) {
         this.id = id;
         this.date = date;
         this.supplier = supplier;
@@ -49,11 +49,11 @@ public class Purchase {
         items.remove(product);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

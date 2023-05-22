@@ -1,13 +1,13 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer;
 
 public class Customer {
-    private long id;
+    private Long id;
     private String name;
     private String cpf;
     private String address;
     private String phoneNumber;
 
-    public Customer(long id, String name, String cpf, String address, String phoneNumber) {
+    public Customer(Long id, String name, String cpf, String address, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -22,7 +22,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
