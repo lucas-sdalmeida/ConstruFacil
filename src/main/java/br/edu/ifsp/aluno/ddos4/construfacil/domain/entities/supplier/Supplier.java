@@ -1,5 +1,7 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier;
 
+import java.util.Objects;
+
 public class Supplier {
     private Long id;
     private final String cnpj;
@@ -45,5 +47,18 @@ public class Supplier {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Supplier supplier = (Supplier) o;
+        return cnpj.equals(supplier.cnpj);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cnpj);
     }
 }
