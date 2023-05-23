@@ -1,9 +1,11 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer;
 
+import java.util.Objects;
+
 public class Customer {
     private Long id;
     private String name;
-    private String cpf;
+    private final String cpf;
     private String address;
     private String phoneNumber;
 
@@ -42,10 +44,6 @@ public class Customer {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -60,5 +58,18 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return cpf.equals(customer.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cpf);
     }
 }
