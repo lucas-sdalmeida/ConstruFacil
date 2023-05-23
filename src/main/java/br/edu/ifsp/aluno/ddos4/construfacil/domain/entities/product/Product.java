@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Product {
     private Long id;
-    private String name;
+    private final String name;
     private int quantity;
     private double defaultPurchasePrice;
     private double defaultSalePrice;
@@ -35,10 +35,6 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -66,11 +62,11 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id && name.equals(product.name);
+        return name.equals(product.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(name);
     }
 }
