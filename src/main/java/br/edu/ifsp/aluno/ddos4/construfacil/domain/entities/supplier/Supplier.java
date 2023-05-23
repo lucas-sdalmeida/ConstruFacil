@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Supplier {
     private Long id;
     private final String cnpj;
-    private String corporateName;
+    private final String corporateName;
     private String phoneNumber;
 
     public Supplier(Long id, String cnpj, String corporateName, String phoneNumber) {
@@ -31,10 +31,6 @@ public class Supplier {
 
     public String getCorporateName() {
         return corporateName;
-    }
-
-    public void setCorporateName(String corporateName) {
-        this.corporateName = corporateName;
     }
 
     public String getCnpj() {
