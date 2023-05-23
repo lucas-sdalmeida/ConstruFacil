@@ -25,6 +25,11 @@ public class Purchase {
         this.supplier = supplier;
     }
 
+    public Purchase(Supplier supplier) {
+        this.date = LocalDate.now();
+        this.supplier = supplier;
+    }
+
     public double getTotalPrice() {
         return items.values()
                 .stream()
@@ -32,21 +37,54 @@ public class Purchase {
                 .sum();
     }
 
-    public void addProduct(Product product, double actualPrice) {
+    public void addProduct(Product product, int amount, int actualPrice) {
         Objects.requireNonNull(product);
 
-        if (items.containsKey(product)) {
-            items.get(product).increaseQuantityByOne();
+        if (hasProduct(product))
+            throw new IllegalArgumentException("This product already has already been added!");
+        if (amount <= 0)
+            throw new IllegalArgumentException("The amount should be greater than zero!");
+        if (actualPrice < 0)
+            throw new IllegalArgumentException("The actual purchase price cannot be lower than zero!");
+
+        PurchaseItem item = new PurchaseItem(product, amount, actualPrice);
+
+        items.put(product, item);
+    }
+
+    public void increaseProductQuantityBy(Product product, int amount) {
+        Objects.requireNonNull(product);
+
+        if (!hasProduct(product))
+            throw new IllegalArgumentException("This product has never been added!");
+
+        items.get(product).increaseQuantityBy(amount);
+    }
+
+    public void decreaseProductQuantityBy(Product product, int amount) {
+        Objects.requireNonNull(product);
+
+        if (!hasProduct(product))
+            throw new IllegalArgumentException("This product has never been added!");
+
+        PurchaseItem item = items.get(product);
+
+        if (item.getQuantity() - amount <= 0) {
+            items.remove(product);
             return;
         }
 
-        items.put(product, new PurchaseItem(product, 1, actualPrice));
+        item.decreaseQuantityBy(amount);
     }
 
     public void removeProduct(Product product) {
         Objects.requireNonNull(product);
 
         items.remove(product);
+    }
+
+    public boolean hasProduct(Product product) {
+        return items.containsKey(product);
     }
 
     public Long getId() {

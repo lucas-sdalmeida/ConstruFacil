@@ -19,12 +19,23 @@ class PurchaseItem {
         return actualPurchasePrice * quantity;
     }
 
-    void increaseQuantityByOne() {
-        quantity++;
+    void increaseQuantityBy(int amount) {
+        if (amount < 0)
+            throw new IllegalArgumentException("Cannot increase the product quantity by a negative value!");
+        quantity += amount;
     }
 
-    void decreaseQuantityByOne() {
-        quantity--;
+    void decreaseQuantityBy(int amount) {
+        if (amount < 0)
+            throw new IllegalArgumentException("Cannot decrease the quantity by a negative value!");
+        if (quantity - amount < 0) {
+            throw new IllegalArgumentException(
+                    "Cannot decrease product quantity by " + amount +
+                            " because this would result in a negative quantity!"
+            );
+        }
+
+        quantity -= amount;
     }
 
     Product getProduct() {
