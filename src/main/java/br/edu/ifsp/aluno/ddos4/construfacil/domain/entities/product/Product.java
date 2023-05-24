@@ -14,13 +14,11 @@ public class Product {
         this.name = name;
         this.quantity = quantity;
         this.defaultPurchasePrice = defaultPurchasePrice;
-        this.defaultSalePrice = defaultSalePrice;
+        setDefaultSalePrice(defaultSalePrice);
     }
 
-    public Product(String name, double defaultPurchasePrice, double defaultSalePrice) {
-        this.name = name;
-        this.defaultPurchasePrice = defaultPurchasePrice;
-        this.defaultSalePrice = defaultSalePrice;
+    public Product(String name, int quantity, double defaultPurchasePrice, double defaultSalePrice) {
+        this(null, name, quantity, defaultPurchasePrice, defaultSalePrice);
     }
 
     public long getId() {
@@ -46,6 +44,11 @@ public class Product {
     public double getDefaultPurchasePrice() {return defaultPurchasePrice;}
 
     public void setDefaultPurchasePrice(double defaultPurchasePrice) {
+        if (defaultPurchasePrice < 0) {
+            throw new IllegalArgumentException(
+                "The default purchase price cannot be lower than zero!"
+            );
+        }
         this.defaultPurchasePrice = defaultPurchasePrice;
     }
 
@@ -54,6 +57,11 @@ public class Product {
     }
 
     public void setDefaultSalePrice(double defaultSalePrice) {
+        if (defaultSalePrice < this.defaultPurchasePrice) {
+            throw new IllegalArgumentException(
+                "The default sale price cannot be lower than the default purchase price"
+            );
+        }
         this.defaultSalePrice = defaultSalePrice;
     }
 
