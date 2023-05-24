@@ -21,7 +21,7 @@ public class Product {
         this(null, name, quantity, defaultPurchasePrice, defaultSalePrice);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

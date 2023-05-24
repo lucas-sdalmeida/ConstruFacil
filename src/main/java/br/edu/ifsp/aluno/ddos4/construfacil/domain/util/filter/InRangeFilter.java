@@ -19,22 +19,24 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
     }
 
     @Override
-    public boolean applyTo(A value) {
+    public final boolean applyTo(A value) {
         Objects.requireNonNull(value);
 
+        if (minValue == null && maxValue == null)
+            return true;
         if (minValue == null)
-            throw new IllegalStateException("No min value has been added!");
+            return value.compareTo(maxValue) <= 0;
         if (maxValue == null)
-            throw new IllegalStateException("No max value has been added!");
-        
+            return value.compareTo(minValue) >= 0;
+
         return value.compareTo(minValue) >= 0 && value.compareTo(maxValue) <= 0;
     }
 
-    public A getMinValue() {
+    public final A getMinValue() {
         return minValue;
     }
 
-    public void setMinValue(A minValue) {
+    public final void setMinValue(A minValue) {
         Objects.requireNonNull(minValue);
 
         if (maxValue != null && maxValue.compareTo(minValue) < 0)
@@ -43,16 +45,24 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
         this.minValue = minValue;
     }
 
-    public A getMaxValue() {
+    public final void clearMinValue() {
+        this.minValue = null;
+    }
+
+    public final A getMaxValue() {
         return maxValue;
     }
 
-    public void setMaxValue(A maxValue) {
+    public final void setMaxValue(A maxValue) {
         Objects.requireNonNull(maxValue);
 
         if (minValue != null && minValue.compareTo(maxValue) > 0)
             throw new IllegalArgumentException("The max value cannot be before min value!");
 
         this.maxValue = maxValue;
+    }
+
+    public final void clearMaxValue() {
+        this.maxValue = null;
     }
 }
