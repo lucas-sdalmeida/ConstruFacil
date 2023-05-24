@@ -26,7 +26,7 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
             throw new IllegalStateException("No min value has been added!");
         if (maxValue == null)
             throw new IllegalStateException("No max value has been added!");
-        
+
         return value.compareTo(minValue) >= 0 && value.compareTo(maxValue) <= 0;
     }
 
@@ -39,6 +39,8 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
 
         if (maxValue != null && maxValue.compareTo(minValue) < 0)
             throw new IllegalArgumentException("The min value cannot be after max value!");
+        if (maxValue == null)
+            this.maxValue = minValue;
 
         this.minValue = minValue;
     }
@@ -52,6 +54,8 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
 
         if (minValue != null && minValue.compareTo(maxValue) > 0)
             throw new IllegalArgumentException("The max value cannot be before min value!");
+        if (minValue == null)
+            this.minValue = maxValue;
 
         this.maxValue = maxValue;
     }
