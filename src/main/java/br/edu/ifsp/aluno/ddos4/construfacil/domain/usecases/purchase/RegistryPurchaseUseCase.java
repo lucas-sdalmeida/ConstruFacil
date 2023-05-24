@@ -29,17 +29,12 @@ public class RegistryPurchaseUseCase {
                         "has already been registred."
                     );
                 });
-
         purchaseDAO.save(purchase);
-
-        long purchaseId = purchaseDAO.findOneByKey(purchase.getId())
-                .orElseThrow(
-                        () -> new EntityNotFoundException("" +
-                                "Couldn't find the new Purchase!"
-                        )
+        long purchaseId = purchaseDAO
+                .findOneByKey(purchase.getId())
+                .orElseThrow(() ->
+                        new EntityNotFoundException("The purchase has not been registred!")
                 ).getId();
-
-        purchase.setId(purchaseId);
 
         return purchaseId;
     }
