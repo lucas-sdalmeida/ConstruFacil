@@ -4,7 +4,6 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.Supplier;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.SupplierDAO;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases.util.Validator;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;

@@ -7,5 +7,13 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface SupplierDAO extends DAO<Long, Supplier> {
-    Optional<Supplier> findOneByCNPJ(String corporateName);
+    void save(Supplier supplier);
+
+    void update(Supplier supplier);
+
+    Optional<Supplier> findOneByKey(Long id);
+
+    Optional<Supplier> findOneByCNPJ(String cnpj);
+
+    Map<Long, Supplier> findAll();
 }

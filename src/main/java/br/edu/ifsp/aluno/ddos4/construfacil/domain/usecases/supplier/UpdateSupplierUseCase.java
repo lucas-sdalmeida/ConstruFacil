@@ -23,9 +23,10 @@ public class UpdateSupplierUseCase {
         if (notification.hasMessages())
             throw new IllegalArgumentException(notification.getMessagesAsString());
 
-        supplierDAO.findOneByKey(supplier.getId()).orElseThrow(() ->
-                new EntityNotFoundException("There is not such supplier!")
-        );
+        supplierDAO.findOneByKey(supplier.getId())
+                                                .orElseThrow(() ->
+                                                    new EntityNotFoundException("There is not such supplier!")
+                                                );
 
         supplierDAO.update(supplier);
     }

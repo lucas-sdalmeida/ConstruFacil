@@ -24,17 +24,17 @@ public class RegistrySupplierUseCase {
         if (notification.hasMessages())
             throw new IllegalArgumentException(notification.getMessagesAsString());
 
-        supplierDAO.findOneByCNPJ(supplier.getCorporateName())
-                .ifPresent(s -> {
-                    throw new EntityAlreadyExistsException(
-                        "A supplier with name '" + supplier.getCorporateName() +
-                        "' has already been registered"
-                    );
-                });
+        supplierDAO.findOneByCNPJ(supplier.getCnpj())
+                                                .ifPresent(s -> {
+                                                    throw new EntityAlreadyExistsException(
+                                                        "A supplier with CNPJ '" + supplier.getCnpj() +
+                                                        "' has already been registered"
+                                                    );
+                                                });
 
         supplierDAO.save(supplier);
         long supplierId = supplierDAO
-                                .findOneByCNPJ(supplier.getCorporateName())
+                                .findOneByCNPJ(supplier.getCnpj())
                                 .orElseThrow(() ->
                                         new EntityNotFoundException("The supplier has not been registered!")
                                 )
