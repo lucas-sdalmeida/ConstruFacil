@@ -1,13 +1,14 @@
-package br.edu.ifsp.aluno.ddos4.construfacil.domain.util;
+package br.edu.ifsp.aluno.ddos4.construfacil.domain.util.filter;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Filter<A> {
+public class MembershipFilter<A> implements Filter<A> {
     private final Set<A> allowedValuesSet = new HashSet<>();
     private final Set<A> forbiddenValuesSet = new HashSet<>();
 
+    @Override
     public final boolean applyTo(A value) {
         Objects.requireNonNull(value);
 
