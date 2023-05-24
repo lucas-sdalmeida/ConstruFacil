@@ -19,7 +19,7 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
     }
 
     @Override
-    public boolean applyTo(A value) {
+    public final boolean applyTo(A value) {
         Objects.requireNonNull(value);
 
         if (minValue == null && maxValue == null)
@@ -45,6 +45,10 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
         this.minValue = minValue;
     }
 
+    public final void clearMinValue() {
+        this.minValue = null;
+    }
+
     public final A getMaxValue() {
         return maxValue;
     }
@@ -56,5 +60,9 @@ public class InRangeFilter<A extends Comparable<A>> implements Filter<A> {
             throw new IllegalArgumentException("The max value cannot be before min value!");
 
         this.maxValue = maxValue;
+    }
+
+    public final void clearMaxValue() {
+        this.maxValue = null;
     }
 }
