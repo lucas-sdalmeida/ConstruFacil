@@ -1,7 +1,8 @@
-package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
+package br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.util.SQLiteConnectionFactory;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.ProductDAO;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
 
 import java.sql.PreparedStatement;
@@ -15,8 +16,8 @@ public class ProductSQliteDAO implements ProductDAO{
     public void save(Product product) {
         String sql = "INSERT INTO product (id, name, quantity, purchasePrice, purchaseSale)  " +
                 "VALUES (?, ?, ?, ?, ?)";
-        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
-        try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        try(PreparedStatement stmt = connectionFactory.createPreparedStatement(sql)){
             stmt.setLong(1, product.getId());
             stmt.setString(2, product.getName());
             stmt.setInt(3, product.getQuantity());
@@ -32,8 +33,8 @@ public class ProductSQliteDAO implements ProductDAO{
     public void update(Product product) {
         String sql = "UPDATE product SET name=?, quantity=?, purchasePrice=?, purchaseSale=?" +
                 "WHERE id=?";
-        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
-        try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        try(PreparedStatement stmt = connectionFactory.createPreparedStatement(sql)){
             stmt.setString(1, product.getName());
             stmt.setInt(2, product.getQuantity());
             stmt.setDouble(3, product.getDefaultPurchasePrice());

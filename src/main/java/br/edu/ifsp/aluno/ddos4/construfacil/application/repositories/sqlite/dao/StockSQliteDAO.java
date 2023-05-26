@@ -6,24 +6,24 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.DAO;
 import java.util.Map;
 import java.util.Optional;
 
-public class StockSQliteDAO implements DAO<Stock> {
+public class StockSQliteDAO implements DAO<Long, Stock> {
     @Override
-    public void save(Object type) {
+    public void save(Stock stock) {
 
     }
 
     @Override
-    public void update(Object type) {
+    public void update(Stock stock) {
 
     }
 
     @Override
-    public Optional findOneByKey(Object id) {
+    public Optional<Stock> findOneByKey(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public Map findAll() {
+    public Map<Long, Stock> findAll() {
         return null;
     }
 }
