@@ -1,18 +1,71 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util;
 
+import org.sqlite.SQLiteDataSource;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public abstract class ConnectionFactory {
-    public abstract Connection getConnection();
+public class ConnectionFactory implements AutoCloseable{
 
-    public final PreparedStatement getPreparedStatement(String sql) {
+    private static Connection connection;
+    private static PreparedStatement preparedStatement;
+    private static Statement statement;
+
+    public static Connection createConnection() {
         try {
-            return getConnection().prepareStatement(sql);
+            instantiateConnectionIfNull();
         }
-        catch (SQLException exception) {
-            throw new CannotConnectToDatabaseException(exception.getMessage());
+        catch (SQLException e) {
+            e.printStackTrace();
         }
+        return connection;
+    }
+
+    private static void instantiateConnectionIfNull() throws SQLException {
+        SQLiteDataSource ds = new SQLiteDataSource();
+        ds.setUrl("jdbc:sqlite:database.db");
+        if(connection == null) {
+            connection = ds.getConnection();
+        }
+    }
+
+    public static PreparedStatement createPreparedStatement(String sql) {
+        try {
+            preparedStatement = createConnection().prepareStatement(sql);
+        }
+        catch (SQLException e) {
+            throw new CannotConnectToDatabaseException(e.getMessage());
+        }
+        return preparedStatement;
+    }
+
+    public static Statement createStatement() {
+        try {
+            statement = createConnection().createStatement();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return statement;
+    }
+
+    @Override
+    public void close() throws Exception {
+        closeStatementsIfNotNull();
+        closeConnectionIfNotNull();
+    }
+
+    private void closeConnectionIfNotNull() throws SQLException {
+        if(connection != null)
+            connection.close();
+    }
+
+    private void closeStatementsIfNotNull() throws SQLException {
+        if(preparedStatement != null)
+            preparedStatement.close();
+        if(statement != null)
+            statement.close();
     }
 }

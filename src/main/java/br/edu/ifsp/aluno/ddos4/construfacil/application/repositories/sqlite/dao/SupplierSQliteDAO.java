@@ -1,7 +1,8 @@
-package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao;
+package br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.dao;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.util.SQLiteConnectionFactory;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.Supplier;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.SupplierDAO;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
 
 import java.sql.PreparedStatement;
@@ -15,8 +16,8 @@ public class SupplierSQliteDAO implements SupplierDAO {
     public void save(Supplier supplier) {
         String sql = "INSERT INTO supplier (id, cnpj, corporateName, phoneNumber) " +
                 "VALUES (?, ?, ?, ?)";
-        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
-        try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        try (PreparedStatement stmt = connectionFactory.createPreparedStatement(sql)) {
             stmt.setLong(1, supplier.getId());
             stmt.setString(2, supplier.getCnpj());
             stmt.setString(3, supplier.getCorporateName());
@@ -30,8 +31,8 @@ public class SupplierSQliteDAO implements SupplierDAO {
     @Override
     public void update(Supplier supplier) {
         String sql = "UPDATE supplier SET cnpj=?, corporateName=?, phoneNumber=? WHERE id=?";
-        ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
-        try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        try (PreparedStatement stmt = connectionFactory.createPreparedStatement(sql)){
             stmt.setString(1, supplier.getCnpj());
             stmt.setString(2, supplier.getCorporateName());
             stmt.setString(3, supplier.getPhoneNumber());

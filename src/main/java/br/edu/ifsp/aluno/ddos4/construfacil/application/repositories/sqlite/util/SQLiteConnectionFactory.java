@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 public final class SQLiteConnectionFactory extends ConnectionFactory {
     private static Connection connection;
 
+    /* 
     @Override
     public Connection getConnection() {
         try {
@@ -19,4 +20,5 @@ public final class SQLiteConnectionFactory extends ConnectionFactory {
             throw new CannotConnectToDatabaseException(exception.getMessage());
         }
     }
+    */
 }
