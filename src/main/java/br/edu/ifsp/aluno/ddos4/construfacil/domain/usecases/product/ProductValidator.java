@@ -18,7 +18,7 @@ public class ProductValidator extends Validator<Product> {
             notification.addMessage("Product's name is required!");
         if (product.getQuantity() < 0)
             notification.addMessage("Product's quantity cannot be a negative value!");
-        if(product.getDefaultPurchasePrice() <= 0)
+        if(product.getAvaragePurchasePrice() <= 0)
             notification.addMessage("Product's default purchase price cannot be 0 or lower!");
         if (product.getDefaultSalePrice() <= 0)
             notification.addMessage("Product's sale price cannot be 0 or lower!");

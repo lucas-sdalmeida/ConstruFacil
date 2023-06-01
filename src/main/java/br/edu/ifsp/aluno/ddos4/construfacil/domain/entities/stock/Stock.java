@@ -133,7 +133,7 @@ public class Stock {
         return products.values().stream()
                 .filter(product -> possibleNames.applyTo(product.getName()))
                 .filter(product -> quantityRangeFilter.applyTo(product.getQuantity()))
-                .filter(product -> defaultPurchasePriceFilter.applyTo(product.getDefaultPurchasePrice()))
+                .filter(product -> defaultPurchasePriceFilter.applyTo(product.getAvaragePurchasePrice()))
                 .filter(product -> defaultSalePriceFilter.applyTo(product.getDefaultSalePrice()))
                 .collect(Collectors.toMap(Product::getId, product -> product));
     }
@@ -143,7 +143,7 @@ public class Stock {
                 .filter(this::hasLowQuantityOf)
                 .filter(product -> possibleNames.applyTo(product.getName()))
                 .filter(product -> quantityRangeFilter.applyTo(product.getQuantity()))
-                .filter(product -> defaultPurchasePriceFilter.applyTo(product.getDefaultPurchasePrice()))
+                .filter(product -> defaultPurchasePriceFilter.applyTo(product.getAvaragePurchasePrice()))
                 .filter(product -> defaultSalePriceFilter.applyTo(product.getDefaultSalePrice()))
                 .collect(Collectors.toMap(Product::getId, product -> product));
     }
