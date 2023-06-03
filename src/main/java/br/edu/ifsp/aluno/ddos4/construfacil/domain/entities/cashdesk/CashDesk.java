@@ -9,40 +9,24 @@ import java.util.List;
 
 public class CashDesk {
     private Long id;
-    private double initialBalance;
-    private double finalBalance;
-    private boolean cashIsOpen;
     private List<Sale> sales;
+    private Long currentBalance;
     private List<Purchase> purchases;
-    private List<PurchaseRefund> refunds;
+    private List<PurchaseRefund> purchaseRefunds;
     private List<SaleRefund> saleRefunds;
 
-    public CashDesk(Long id, double initialBalance, double finalBalance, boolean cashIsOpen, List<Sale> sales, List<Purchase> purchases, List<PurchaseRefund> refunds, List<SaleRefund> saleRefunds) {
+    public CashDesk(Long id, List<Sale> sales, Long currentBalance, List<Purchase> purchases, List<PurchaseRefund> purchaseRefunds, List<SaleRefund> saleRefunds) {
         this.id = id;
-        this.initialBalance = initialBalance;
-        this.finalBalance = finalBalance;
-        this.cashIsOpen = cashIsOpen;
         this.sales = sales;
+        this.currentBalance = currentBalance;
         this.purchases = purchases;
-        this.refunds = refunds;
+        this.purchaseRefunds = purchaseRefunds;
         this.saleRefunds = saleRefunds;
     }
 
     public Long getId(){return id;}
 
     public void setId(Long id){ this.id = id;}
-
-    public double getInitialBalance(){return initialBalance;}
-
-    public void setInitialBalance(double initialBalance){this.initialBalance = initialBalance;}
-
-    public double getFinalBalance(){return finalBalance;}
-
-    public void setFinalBalance(double finalBalance){this.finalBalance = finalBalance;}
-
-    public boolean getCashIsOpen(){return cashIsOpen;}
-
-    public void setCashIsOpen(boolean cashIsOpen){this.cashIsOpen = cashIsOpen;}
 
     public List<Sale> getSales() {return sales;}
 
@@ -52,11 +36,14 @@ public class CashDesk {
 
     public void setPurchases(List<Purchase> purchases) {this.purchases = purchases;}
 
-    public List<PurchaseRefund> getRefunds() {return refunds;}
+    public List<PurchaseRefund> getPurchaseRefunds() {return purchaseRefunds;}
 
-    public void setRefunds(List<PurchaseRefund> refunds) {this.refunds = refunds;}
+    public void setPurchaseRefunds(List<PurchaseRefund> purchaseRefunds) {this.purchaseRefunds = purchaseRefunds;}
 
     public List<SaleRefund> getSaleRefunds() {return saleRefunds;}
 
     public void setSaleRefunds(List<SaleRefund> saleRefunds) {this.saleRefunds = saleRefunds;}
+    public Long getCurrentBalance() {return currentBalance;}
+
+    public void setCurrentBalance(Long currentBalance) {this.currentBalance = currentBalance;}
 }
