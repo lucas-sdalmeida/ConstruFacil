@@ -1,24 +1,35 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.cashdesk;
 
-import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.Purchase;
-import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.PurchaseRefund;
-import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale.Sale;
-import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale.SaleRefund;
-
-import java.util.List;
+import java.util.Objects;
 
 public class CashDesk {
-    private Long currentBalance;
+    private static CashDesk INSTANCE = null;
+    private Long currentBalanceInCents;
 
-    public CashDesk(Long currentBalance) {
-        this.currentBalance = currentBalance;
+    private CashDesk() {
+        this.currentBalanceInCents = 0L;
     }
 
-    public Long getCurrentBalance() {
-        return currentBalance;
+    public static CashDesk getInstance() {
+        if (INSTANCE == null)
+            INSTANCE = new CashDesk();
+
+        return INSTANCE;
     }
 
-    public void setCurrentBalance(Long currentBalance) {
-        this.currentBalance = currentBalance;
+    public Long getCurrentBalanceInCents() {
+        return currentBalanceInCents;
+    }
+
+    public void increaseBalanceBy(long amountInCents) {
+        if (amountInCents < 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        currentBalanceInCents += amountInCents;
+    }
+
+    public void decreaseBalanceBy(long amountInCents) {
+        if (amountInCents < 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        currentBalanceInCents -= amountInCents;
     }
 }
