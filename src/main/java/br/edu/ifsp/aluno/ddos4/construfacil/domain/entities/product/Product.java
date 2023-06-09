@@ -6,19 +6,18 @@ public class Product {
     private Long id;
     private final String name;
     private int quantity;
-    private double defaultPurchasePrice;
-    private double defaultSalePrice;
+    private double avaragePurchasePrice;
 
-    public Product(Long id, String name, int quantity, double defaultPurchasePrice, double defaultSalePrice) {
+    public Product(Long id, String name, int quantity, double avaragePurchasePrice, double defaultSalePrice) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
-        this.defaultPurchasePrice = defaultPurchasePrice;
+        this.avaragePurchasePrice = avaragePurchasePrice;
         setDefaultSalePrice(defaultSalePrice);
     }
 
-    public Product(String name, int quantity, double defaultPurchasePrice, double defaultSalePrice) {
-        this(null, name, quantity, defaultPurchasePrice, defaultSalePrice);
+    public Product(String name, int quantity, double avaragePurchasePrice, double defaultSalePrice) {
+        this(null, name, quantity, avaragePurchasePrice, defaultSalePrice);
     }
 
     public Long getId() {
@@ -41,28 +40,28 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public double getDefaultPurchasePrice() {return defaultPurchasePrice;}
+    public double getAvaragePurchasePrice() {return avaragePurchasePrice;}
 
-    public void setDefaultPurchasePrice(double defaultPurchasePrice) {
-        if (defaultPurchasePrice < 0) {
+    public void setAvaragePurchasePrice(double avaragePurchasePrice) {
+        if (avaragePurchasePrice < 0) {
             throw new IllegalArgumentException(
                 "The default purchase price cannot be lower than zero!"
             );
         }
-        this.defaultPurchasePrice = defaultPurchasePrice;
+        this.avaragePurchasePrice = avaragePurchasePrice;
     }
 
     public double getDefaultSalePrice() {
-        return defaultSalePrice;
+        return avaragePurchasePrice;
     }
 
     public void setDefaultSalePrice(double defaultSalePrice) {
-        if (defaultSalePrice < this.defaultPurchasePrice) {
+        if (defaultSalePrice < this.avaragePurchasePrice) {
             throw new IllegalArgumentException(
                 "The default sale price cannot be lower than the default purchase price"
             );
         }
-        this.defaultSalePrice = defaultSalePrice;
+        this.avaragePurchasePrice = defaultSalePrice;
     }
 
     @Override

@@ -1,12 +1,10 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.dao;
 
-import br.edu.ifsp.aluno.ddos4.construfacil.application.repositories.sqlite.util.SQLiteConnectionFactory;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.ProductDAO;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFactory;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.Optional;
@@ -21,7 +19,7 @@ public class ProductSQliteDAO implements ProductDAO{
             stmt.setLong(1, product.getId());
             stmt.setString(2, product.getName());
             stmt.setInt(3, product.getQuantity());
-            stmt.setDouble(4, product.getDefaultPurchasePrice());
+            stmt.setDouble(4, product.getAvaragePurchasePrice());
             stmt.setDouble(5, product.getDefaultSalePrice());
             stmt.executeUpdate();
         }catch (SQLException e){
@@ -37,7 +35,7 @@ public class ProductSQliteDAO implements ProductDAO{
         try(PreparedStatement stmt = connectionFactory.createPreparedStatement(sql)){
             stmt.setString(1, product.getName());
             stmt.setInt(2, product.getQuantity());
-            stmt.setDouble(3, product.getDefaultPurchasePrice());
+            stmt.setDouble(3, product.getAvaragePurchasePrice());
             stmt.setDouble(4, product.getDefaultSalePrice());
         }catch (SQLException e){
             e.printStackTrace();

@@ -44,7 +44,7 @@ public class Sale {
             throw new IllegalArgumentException("This product has already been added!");
         if (amount <= 0)
             throw new IllegalArgumentException("Amount should be greater than zero!");
-        if (actualPrice < product.getDefaultPurchasePrice()) {
+        if (actualPrice < product.getAvaragePurchasePrice()) {
             throw new IllegalArgumentException(
                 "The actual sale price cannot be lower than the default purchase price!"
             );
