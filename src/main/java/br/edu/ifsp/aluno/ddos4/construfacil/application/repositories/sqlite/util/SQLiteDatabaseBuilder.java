@@ -72,8 +72,8 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("status VARCHAR(10) NOT NULL DEFAULT 'ACTIVE', \n");
         builder.append("CONSTRAINT product_pk PRIMARY KEY (id_product), \n");
         builder.append("CONSTRAINT name_un UNIQUE (name), \n");
-        builder.append("CONSTRAINT quantity_ck CHECK (quantity > 0) \n");
-        //builder.append("CONSTRAINT average_purchase_price_ck UNIQUE (average_purchase_price > 0) \n");
+        builder.append("CONSTRAINT quantity_ck CHECK (quantity >= 0) \n");
+        builder.append("CONSTRAINT average_purchase_price_ck CHECK (average_purchase_price > 0) \n");
         builder.append("); \n");
 
         return builder.toString();
