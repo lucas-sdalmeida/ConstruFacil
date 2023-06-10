@@ -9,4 +9,6 @@ import java.util.Optional;
 
 public interface SaleRefundDAO extends DAO<Long, SaleRefund> {
     Optional<SaleRefund> findOneBySale(Sale Sale);
+
+    long getTotalPrice();
 }

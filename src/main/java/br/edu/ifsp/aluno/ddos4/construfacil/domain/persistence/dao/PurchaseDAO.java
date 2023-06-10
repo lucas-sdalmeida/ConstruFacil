@@ -14,4 +14,6 @@ public interface PurchaseDAO extends DAO<Long, Purchase> {
     Map<Long, Purchase> findSomeBySupplier(Supplier supplier);
 
     Map<Long, Purchase> findSomeBySupplierAndDate(Supplier supplier, LocalDate date);
+
+    long getTotalPrice();
 }

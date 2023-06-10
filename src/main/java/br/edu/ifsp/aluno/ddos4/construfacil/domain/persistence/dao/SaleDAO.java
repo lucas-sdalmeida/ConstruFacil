@@ -14,4 +14,6 @@ public interface SaleDAO extends DAO<Long, Sale> {
     Map<Long, Sale> findSomeByCustomer(Customer customer);
 
     Map<Long, Sale> findSomeByCustomerAndDate(Customer customer, LocalDate date);
+
+    long getTotaPrice();
 }
