@@ -87,6 +87,7 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("CNPJ VARCHAR(15) NOT NULL, \n");
         builder.append("corporate_Name VARCHAR(100) NOT NULL, \n");
         builder.append("Phone_Number VARCHAR(20), \n");
+        builder.append("status VARCHAR(10) NOT NULL DEFAULT 'ACTIVE',");
         builder.append("CONSTRAINT supplier_pk PRIMARY KEY (id_supplier),");
         builder.append("CONSTRAINT CNPJ_UN UNIQUE (CNPJ),");
         builder.append("CONSTRAINT corporate_name_un UNIQUE (corporate_name)");
