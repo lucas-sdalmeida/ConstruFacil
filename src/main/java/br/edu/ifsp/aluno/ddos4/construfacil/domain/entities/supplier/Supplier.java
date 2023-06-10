@@ -16,9 +16,7 @@ public class Supplier {
     }
 
     public Supplier(String cnpj, String corporateName, String phoneNumber) {
-        this.cnpj = cnpj;
-        this.corporateName = corporateName;
-        this.phoneNumber = phoneNumber;
+        this(null, cnpj, corporateName, phoneNumber);
     }
 
     public Long getId() {
