@@ -6,18 +6,17 @@ public class Product {
     private Long id;
     private final String name;
     private int quantity;
-    private double avaragePurchasePrice;
+    private Long averagePurchasePriceInCents;
 
-    public Product(Long id, String name, int quantity, double avaragePurchasePrice, double defaultSalePrice) {
+    public Product(Long id, String name, int quantity, Long averagePurchasePriceInCents) {
         this.id = id;
         this.name = name;
-        this.quantity = quantity;
-        this.avaragePurchasePrice = avaragePurchasePrice;
-        setDefaultSalePrice(defaultSalePrice);
+        setQuantity(quantity);
+        setAveragePurchasePriceInCents(averagePurchasePriceInCents);
     }
 
-    public Product(String name, int quantity, double avaragePurchasePrice, double defaultSalePrice) {
-        this(null, name, quantity, avaragePurchasePrice, defaultSalePrice);
+    public Product(String name, int quantity, Long averagePurchasePriceInCents) {
+        this(null, name, quantity, averagePurchasePriceInCents);
     }
 
     public Long getId() {
@@ -37,31 +36,19 @@ public class Product {
     }
 
     public void setQuantity(int quantity) {
+        if (quantity < 0)
+            throw new IllegalArgumentException("Quantity must be a non-negative number!");
         this.quantity = quantity;
     }
 
-    public double getAvaragePurchasePrice() {return avaragePurchasePrice;}
-
-    public void setAvaragePurchasePrice(double avaragePurchasePrice) {
-        if (avaragePurchasePrice < 0) {
-            throw new IllegalArgumentException(
-                "The default purchase price cannot be lower than zero!"
-            );
-        }
-        this.avaragePurchasePrice = avaragePurchasePrice;
+    public Long getAveragePurchasePriceInCents() {
+        return averagePurchasePriceInCents;
     }
 
-    public double getDefaultSalePrice() {
-        return avaragePurchasePrice;
-    }
-
-    public void setDefaultSalePrice(double defaultSalePrice) {
-        if (defaultSalePrice < this.avaragePurchasePrice) {
-            throw new IllegalArgumentException(
-                "The default sale price cannot be lower than the default purchase price"
-            );
-        }
-        this.avaragePurchasePrice = defaultSalePrice;
+    public void setAveragePurchasePriceInCents(Long averagePurchasePriceInCents) {
+        if (averagePurchasePriceInCents < 0)
+            throw new IllegalArgumentException("The default purchase price cannot be lower than zero!");
+        this.averagePurchasePriceInCents = averagePurchasePriceInCents;
     }
 
     @Override
