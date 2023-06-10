@@ -3,93 +3,103 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer.Customer;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
 
-import java.time.LocalDate;
-import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Sale {
     private Long id;
-    private final LocalDate date;
+    private final LocalDateTime issueDate;
     private final Customer customer;
-    private final Map<Product, SaleItem> items = new HashMap<>();
+    private final Map<SaleItem, Long> saleItems = new HashMap<>();
 
-    public Sale(Long id, LocalDate date, Customer customer) {
+    public Sale(Long id, LocalDateTime issueDate, Customer customer) {
         this.id = id;
-        this.date = date;
+        this.issueDate = issueDate;
         this.customer = customer;
     }
 
-    public Sale(LocalDate date, Customer customer) {
-        this.date = date;
-        this.customer = customer;
+    public Sale(LocalDateTime issueDate, Customer customer) {
+        this(null, issueDate, customer);
     }
 
-    public Sale(Customer customer) {
-        this.date = LocalDate.now();
-        this.customer = customer;
-    }
-
-    public double getTotalPrice() {
-        return items.values()
-                .stream()
-                .mapToDouble(SaleItem::getTotalPrice)
+    public Long getTotalPriceInCents() {
+        return saleItems.keySet().stream()
+                .mapToLong(item -> item.getPriceInCents() * saleItems.get(item))
                 .sum();
-    }
-
-    public void addProduct(Product product, int amount, double actualPrice) {
-        Objects.requireNonNull(product);
-
-        if (hasProduct(product))
-            throw new IllegalArgumentException("This product has already been added!");
-        if (amount <= 0)
-            throw new IllegalArgumentException("Amount should be greater than zero!");
-        if (actualPrice < product.getAvaragePurchasePrice()) {
-            throw new IllegalArgumentException(
-                "The actual sale price cannot be lower than the default purchase price!"
-            );
-        }
-
-        SaleItem item = new SaleItem(product, amount, actualPrice);
-
-        items.put(product, item);
-    }
-
-    public void increaseProductQuantityBy(Product product, int amount) {
-        Objects.requireNonNull(product);
-
-        if (!hasProduct(product))
-            throw new IllegalArgumentException("This product has not been added yet!");
-
-        items.get(product).increaseQuantityBy(amount);
-    }
-
-    public void decreaseProductQuantityBy(Product product, int amount) {
-        Objects.requireNonNull(product);
-
-        if (!hasProduct(product))
-            throw new IllegalArgumentException("This product has not been added yet");
-
-        SaleItem item = items.get(product);
-
-        if (item.getQuantity() - amount <= 0) {
-            removeProduct(product);
-            return;
-        }
-
-        item.decreaseQuantityBy(amount);
-    }
-
-    public void removeProduct(Product product) {
-        Objects.requireNonNull(product);
-
-        items.remove(product);
     }
 
     public boolean hasProduct(Product product) {
         Objects.requireNonNull(product);
 
-        return items.containsKey(product);
+        return saleItems.keySet().stream()
+                .anyMatch(item -> item.getProduct().equals(product));
+    }
+
+    public boolean hasSaleItem(SaleItem saleItem) {
+        Objects.requireNonNull(saleItem);
+
+        return saleItems.containsKey(saleItem);
+    }
+
+    public List<SaleItem> getSaleItemsList() {
+        return new ArrayList<>(saleItems.keySet());
+    }
+
+    public Long getSaleItemQuantity(SaleItem saleItem) {
+        Objects.requireNonNull(saleItem);
+
+        return saleItems.get(saleItem);
+    }
+
+    public void addSaleItem(SaleItem saleItem) {
+        Objects.requireNonNull(saleItem);
+
+        if (hasSaleItem(saleItem)) {
+            increaseSaleItemQuantityBy(saleItem, 1L);
+            return;
+        }
+
+        saleItems.put(saleItem, 1L);
+    }
+
+    public void removeSaleItem(SaleItem saleItem) {
+        Objects.requireNonNull(saleItem);
+
+        saleItems.remove(saleItem);
+    }
+
+    public void increaseSaleItemQuantityBy(SaleItem saleItem, long amount) {
+        Objects.requireNonNull(saleItem);
+
+        if (amount < 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        if (!hasSaleItem(saleItem))
+            throw new IllegalArgumentException("There is not such item in this sale!");
+
+        long currentQuantity = saleItems.get(saleItem);
+        saleItems.put(saleItem, currentQuantity + amount);
+    }
+
+    public void decreaseSaleItemQuantityBy(SaleItem saleItem, long amount) {
+        Objects.requireNonNull(saleItem);
+
+        if (amount < 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        if (!hasSaleItem(saleItem))
+            throw new IllegalArgumentException("There is not such item in this purchase!");
+
+        long currentQuantity = saleItems.get(saleItem);
+
+        if (currentQuantity - amount <= 0) {
+            removeSaleItem(saleItem);
+            return;
+        }
+
+        saleItems.put(saleItem, currentQuantity - amount);
     }
 
     public Long getId() {
@@ -100,11 +110,24 @@ public class Sale {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getIssueDate() {
+        return issueDate;
     }
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sale sale = (Sale) o;
+        return issueDate.equals(sale.issueDate) && customer.equals(sale.customer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(issueDate, customer);
     }
 }
