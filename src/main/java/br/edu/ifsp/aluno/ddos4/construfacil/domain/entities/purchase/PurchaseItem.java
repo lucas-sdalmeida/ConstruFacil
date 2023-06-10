@@ -4,54 +4,27 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
 
 import java.util.Objects;
 
-class PurchaseItem {
+public class PurchaseItem {
     private final Product product;
-    private int quantity;
-    private final double actualPurchasePrice;
+    private long priceInCents;
 
-    PurchaseItem(Product product, int quantity, double actualPurchasePrice) {
+    public PurchaseItem(Product product, long priceInCents) {
         this.product = product;
-        this.quantity = quantity;
-        this.actualPurchasePrice = actualPurchasePrice;
+        setPriceInCents(priceInCents);
     }
 
-    double getTotalPrice() {
-        return actualPurchasePrice * quantity;
-    }
-
-    void increaseQuantityBy(int amount) {
-        if (amount < 0)
-            throw new IllegalArgumentException("Cannot increase the product quantity by a negative value!");
-        quantity += amount;
-    }
-
-    void decreaseQuantityBy(int amount) {
-        if (amount < 0)
-            throw new IllegalArgumentException("Cannot decrease the quantity by a negative value!");
-        if (quantity - amount < 0) {
-            throw new IllegalArgumentException(
-                    "Cannot decrease product quantity by " + amount +
-                            " because this would result in a negative quantity!"
-            );
-        }
-
-        quantity -= amount;
-    }
-
-    Product getProduct() {
+    public final Product getProduct() {
         return product;
     }
 
-    int getQuantity() {
-        return quantity;
+    public final Long getPriceInCents() {
+        return priceInCents;
     }
 
-    void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    double getActualPurchasePrice() {
-        return actualPurchasePrice;
+    private final void setPriceInCents(long priceInCents) {
+        if (priceInCents < 0)
+            throw new IllegalArgumentException("Price must be a non-negative number!");
+        this.priceInCents = priceInCents;
     }
 
     @Override
@@ -59,11 +32,11 @@ class PurchaseItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PurchaseItem that = (PurchaseItem) o;
-        return Double.compare(that.actualPurchasePrice, actualPurchasePrice) == 0 && product.equals(that.product);
+        return product.equals(that.product) && priceInCents == that.priceInCents;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(product, actualPurchasePrice);
+        return Objects.hash(product, priceInCents);
     }
 }

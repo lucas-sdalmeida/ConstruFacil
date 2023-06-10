@@ -3,88 +3,103 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.Supplier;
 
-import java.time.LocalDate;
-import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 
-public class Purchase {
+public final class Purchase {
     private Long id;
-    private final LocalDate date;
+    private final LocalDateTime issueDate;
     private final Supplier supplier;
-    private final Map<Product, PurchaseItem> items = new HashMap<>();
+    private final Map<PurchaseItem, Long> purchasingItems = new HashMap<>();
 
-    public Purchase(Long id, LocalDate date, Supplier supplier) {
+    public Purchase(Long id, LocalDateTime issueDate, Supplier supplier) {
         this.id = id;
-        this.date = date;
+        this.issueDate = issueDate;
         this.supplier = supplier;
     }
 
-    public Purchase(LocalDate date, Supplier supplier) {
-        this.date = date;
-        this.supplier = supplier;
+    public Purchase(LocalDateTime issueDate, Supplier supplier) {
+        this(null, issueDate, supplier);
     }
 
-    public Purchase(Supplier supplier) {
-        this.date = LocalDate.now();
-        this.supplier = supplier;
-    }
-
-    public double getTotalPrice() {
-        return items.values()
-                .stream()
-                .mapToDouble(PurchaseItem::getTotalPrice)
+    public Long getTotalPriceInCents() {
+        return purchasingItems.keySet().stream()
+                .mapToLong(item -> item.getPriceInCents() * purchasingItems.get(item))
                 .sum();
     }
 
-    public void addProduct(Product product, int amount, int actualPrice) {
+    public boolean hasProduct(Product product) {
         Objects.requireNonNull(product);
 
-        if (hasProduct(product))
-            throw new IllegalArgumentException("This product already has already been added!");
-        if (amount <= 0)
-            throw new IllegalArgumentException("The amount should be greater than zero!");
-        if (actualPrice < 0)
-            throw new IllegalArgumentException("The actual purchase price cannot be lower than zero!");
-
-        PurchaseItem item = new PurchaseItem(product, amount, actualPrice);
-
-        items.put(product, item);
+        return purchasingItems.keySet().stream()
+                .anyMatch(item -> item.getProduct().equals(product));
     }
 
-    public void increaseProductQuantityBy(Product product, int amount) {
-        Objects.requireNonNull(product);
+    public boolean hasPurchaseItem(PurchaseItem purchaseItem) {
+        Objects.requireNonNull(purchaseItem);
 
-        if (!hasProduct(product))
-            throw new IllegalArgumentException("This product has never been added!");
-
-        items.get(product).increaseQuantityBy(amount);
+        return purchasingItems.containsKey(purchaseItem);
     }
 
-    public void decreaseProductQuantityBy(Product product, int amount) {
-        Objects.requireNonNull(product);
+    public List<PurchaseItem> getPurchasingItemsList() {
+        return new ArrayList<>(purchasingItems.keySet());
+    }
 
-        if (!hasProduct(product))
-            throw new IllegalArgumentException("This product has never been added!");
+    public Long getPurchaseItemQuantity(PurchaseItem purchaseItem) {
+        Objects.requireNonNull(purchaseItem);
 
-        PurchaseItem item = items.get(product);
+        return purchasingItems.get(purchaseItem);
+    }
 
-        if (item.getQuantity() - amount <= 0) {
-            items.remove(product);
+    public void addPurchaseItem(PurchaseItem purchaseItem) {
+        Objects.requireNonNull(purchaseItem);
+
+        if (hasPurchaseItem(purchaseItem)) {
+            increasePurchaseItemQuantityBy(purchaseItem, 1L);
             return;
         }
 
-        item.decreaseQuantityBy(amount);
+        purchasingItems.put(purchaseItem, 1L);
     }
 
-    public void removeProduct(Product product) {
-        Objects.requireNonNull(product);
+    public void removePurchaseItem(PurchaseItem purchaseItem) {
+        Objects.requireNonNull(purchaseItem);
 
-        items.remove(product);
+        purchasingItems.remove(purchaseItem);
     }
 
-    public boolean hasProduct(Product product) {
-        return items.containsKey(product);
+    public void increasePurchaseItemQuantityBy(PurchaseItem purchaseItem, long amount) {
+        Objects.requireNonNull(purchaseItem);
+
+        if (amount < 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        if (!hasPurchaseItem(purchaseItem))
+            throw new IllegalArgumentException("There is not such item in this purchase!");
+
+        long currentQuantity = purchasingItems.get(purchaseItem);
+        purchasingItems.put(purchaseItem, currentQuantity + amount);
+    }
+
+    public void decreasePurchaseItemQuantityBy(PurchaseItem purchaseItem, long amount) {
+        Objects.requireNonNull(purchaseItem);
+
+        if (amount < 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        if (!hasPurchaseItem(purchaseItem))
+            throw new IllegalArgumentException("There is not such item in this purchase!");
+
+        long currentQuantity = purchasingItems.get(purchaseItem);
+
+        if (currentQuantity - amount <= 0) {
+            removePurchaseItem(purchaseItem);
+            return;
+        }
+
+        purchasingItems.put(purchaseItem, currentQuantity - amount);
     }
 
     public Long getId() {
@@ -95,8 +110,8 @@ public class Purchase {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getIssueDate() {
+        return issueDate;
     }
 
     public Supplier getSupplier() {
@@ -108,11 +123,11 @@ public class Purchase {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Purchase purchase = (Purchase) o;
-        return date.equals(purchase.date) && supplier.equals(purchase.supplier);
+        return issueDate.equals(purchase.issueDate) && supplier.equals(purchase.supplier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, supplier);
+        return Objects.hash(issueDate, supplier);
     }
 }
