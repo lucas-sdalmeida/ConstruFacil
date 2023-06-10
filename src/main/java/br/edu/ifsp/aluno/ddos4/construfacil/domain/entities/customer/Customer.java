@@ -18,10 +18,7 @@ public class Customer {
     }
 
     public Customer(String name, String cpf, String address, String phoneNumber) {
-        this.name = name;
-        this.cpf = cpf;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+        this(null, name, cpf, address, phoneNumber);
     }
 
     public Long getId() {
