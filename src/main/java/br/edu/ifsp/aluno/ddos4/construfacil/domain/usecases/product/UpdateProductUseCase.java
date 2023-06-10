@@ -10,7 +10,9 @@ import java.util.Objects;
 public class UpdateProductUseCase {
     private final ProductDAO productDAO;
 
-    public UpdateProductUseCase(ProductDAO productDAO) {this.productDAO = productDAO;}
+    public UpdateProductUseCase(ProductDAO productDAO) {
+        this.productDAO = productDAO;
+    }
 
     public void updateProduct(Product product){
         Objects.requireNonNull(product);
@@ -21,9 +23,8 @@ public class UpdateProductUseCase {
         if (notification.hasMessages())
             throw new IllegalArgumentException(notification.getMessagesAsString());
 
-        productDAO.findOneByKey(product.getId()).orElseThrow(() ->
-                new EntityNotFoundException("There is not such product!")
-        );
+        productDAO.findOneByKey(product.getId())
+                    .orElseThrow(() -> new EntityNotFoundException("There is not such product!"));
 
         productDAO.update(product);
     }

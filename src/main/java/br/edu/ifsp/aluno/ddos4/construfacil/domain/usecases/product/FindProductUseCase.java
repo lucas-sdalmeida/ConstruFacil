@@ -10,7 +10,9 @@ import java.util.Optional;
 public class FindProductUseCase {
     private final ProductDAO productDAO;
 
-    public FindProductUseCase(ProductDAO productDAO) {this.productDAO = productDAO;}
+    public FindProductUseCase(ProductDAO productDAO) {
+        this.productDAO = productDAO;
+    }
 
     public Optional<Product> findOneBy(Long id){
         Objects.requireNonNull(id);
@@ -18,5 +20,7 @@ public class FindProductUseCase {
         return  productDAO.findOneByKey(id);
     }
 
-    public Map<Long, Product> findAll(){return productDAO.findAll();}
+    public Map<Long, Product> findAll(){
+        return productDAO.findAll();
+    }
 }

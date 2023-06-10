@@ -11,7 +11,9 @@ import java.util.Objects;
 public class RegistryProductUseCase {
     private final ProductDAO productDAO;
 
-    public RegistryProductUseCase(ProductDAO productDAO) {this.productDAO = productDAO;}
+    public RegistryProductUseCase(ProductDAO productDAO) {
+        this.productDAO = productDAO;
+    }
 
     public long registry(Product product){
         Objects.requireNonNull(product);
@@ -23,19 +25,15 @@ public class RegistryProductUseCase {
             throw new IllegalArgumentException(notification.getMessagesAsString());
 
         productDAO.findOneByName(product.getName())
-                .ifPresent( s-> {
-                    throw new EntityAlreadyExistsException(
-                            "A product with name " + product.getName() +
-                                    " has already been registred"
-                    );
+                .ifPresent( s-> { throw new EntityAlreadyExistsException("A product with name " + product.getName() +
+                    " has already been registered");
                 });
 
         productDAO.save(product);
-        long productId = productDAO
-                .findOneByKey(product.getId())
-                .orElseThrow(() ->
-                            new EntityNotFoundException("The product has not been registred!")
-                ).getId();
+        long productId = productDAO.findOneByKey(product.getId())
+                            .orElseThrow(() -> new EntityNotFoundException("The product has not been registred!"))
+                            .getId();
+        product.setId(productId);
 
         return productId;
     }
