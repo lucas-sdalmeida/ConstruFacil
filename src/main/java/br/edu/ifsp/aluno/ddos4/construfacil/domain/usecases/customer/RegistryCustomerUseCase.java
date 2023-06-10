@@ -25,21 +25,15 @@ public class RegistryCustomerUseCase {
             throw new IllegalArgumentException(notification.getMessagesAsString());
 
         customerDAO.findOneByCPF(customer.getCpf())
-                .ifPresent(c -> {
-                    throw new EntityAlreadyExistsException(
-                            "A customer with CPF '" + customer.getCpf() +
-                            "' has already been registered."
-                    );
-                });
+                    .ifPresent(c -> {throw new EntityAlreadyExistsException("A customer with CPF '" +
+                            customer.getCpf() + "' has already been registered.");
+                    });
 
         customerDAO.save(customer);
 
         long customerId = customerDAO.findOneByCPF(customer.getCpf())
-                                        .orElseThrow(
-                                            () -> new EntityNotFoundException("" +
-                                                "Couldn't find the new customer!"
-                                            )
-                                        ).getId();
+                                    .orElseThrow(() -> new EntityNotFoundException("Couldn't find the new customer!"))
+                                    .getId();
         customer.setId(customerId);
 
         return customerId;
