@@ -16,12 +16,6 @@ public class RegistryPurchaseUseCase {
     public Long registry(Purchase purchase){
         Objects.requireNonNull(purchase);
 
-        PurchaseValidator validator = new PurchaseValidator();
-        Notification notification = validator.validate(purchase);
-
-        if (notification.hasMessages())
-            throw new IllegalArgumentException(notification.getMessagesAsString());
-
         purchaseDAO.findOneByKey(purchase.getId())
                 .ifPresent(c -> {
                     throw new EntityAlreadyExistsException(

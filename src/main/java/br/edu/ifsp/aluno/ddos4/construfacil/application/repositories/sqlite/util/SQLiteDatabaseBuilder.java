@@ -21,20 +21,20 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         return Files.exists(Paths.get("database.db"));
     }
 
-    private void buildTables() {
+    public void buildTables() {
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try (Connection connection = connectionFactory.getConnection();
-                Statement stmt = connection.createStatement()) {
+             Statement stmt = connection.createStatement()) {
             stmt.addBatch(createCustomerTableSql());
             stmt.addBatch(createProductTableSql());
             stmt.addBatch(createSupplierTableSql());
             stmt.addBatch(createPurchaseTableSql());
-            stmt.addBatch(createPurchaseItemTableSql());
             stmt.addBatch(createPurchaseRefundTableSql());
+            stmt.addBatch(createCustomerBuysTableSql());
             stmt.addBatch(createSaleTableSql());
-            stmt.addBatch(createSaleItemTableSql());
             stmt.addBatch(createSaleRefundTableSql());
+            stmt.addBatch(createSupplierProvidesTableSql());
 
             stmt.executeBatch();
         } catch (SQLException e) {
