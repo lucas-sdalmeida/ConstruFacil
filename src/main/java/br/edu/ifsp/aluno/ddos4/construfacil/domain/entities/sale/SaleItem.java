@@ -4,7 +4,7 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
 
 import java.util.Objects;
 
-class SaleItem {
+public class SaleItem {
     private final Product product;
     private long priceInCents;
 
@@ -21,7 +21,7 @@ class SaleItem {
         return priceInCents;
     }
 
-    private final void setPriceInCents(long priceInCents) {
+    private void setPriceInCents(long priceInCents) {
         if (priceInCents < 0)
             throw new IllegalArgumentException("Price must be a non-negative number!");
         this.priceInCents = priceInCents;
