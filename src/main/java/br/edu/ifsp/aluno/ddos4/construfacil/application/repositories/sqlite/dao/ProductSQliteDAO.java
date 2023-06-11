@@ -9,6 +9,7 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFa
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -32,7 +33,7 @@ public class ProductSQliteDAO implements ProductDAO{
 
     @Override
     public void update(Product product) {
-        String sql = "UPDATE Product SET name=?, quantity=?, average_Purchase_Price=? WHERE id_product";
+        String sql = "UPDATE Product SET name=?, quantity=?, average_Purchase_Price=? WHERE id_product=?";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
@@ -40,6 +41,12 @@ public class ProductSQliteDAO implements ProductDAO{
             stmt.setInt(2, product.getQuantity());
             stmt.setLong(3, product.getAveragePurchasePriceInCents());
             stmt.setLong(4, product.getId());
+            stmt.executeUpdate();
+            try {
+                stmt.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -88,18 +95,20 @@ public class ProductSQliteDAO implements ProductDAO{
     public Map<Long, Product> findAll() {
         String sql = "SELECT * FROM Product";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
+        Map<Long, Product> products = new HashMap<>();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()){
+           while (rs.next()){
                 Product p = new Product(rs.getLong("id_product"), rs.getString("name"),
                         rs.getInt("quantity"), rs.getLong("average_Purchase_Price"));
+                products.put(p.getId(), p);
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
 
-        return null;
+        return products;
     }
 
     @Override

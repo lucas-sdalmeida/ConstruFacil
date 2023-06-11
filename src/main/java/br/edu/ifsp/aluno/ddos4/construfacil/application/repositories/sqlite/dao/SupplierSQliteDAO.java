@@ -8,6 +8,7 @@ import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util.ConnectionFa
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -87,15 +88,20 @@ public class SupplierSQliteDAO implements SupplierDAO {
 
     @Override
     public Map<Long, Supplier> findAll() {
-        String sql = "SELECT * FROM Supllier";
+        String sql = "SELECT * FROM Supplier";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
+        Map<Long, Supplier> suppliers = new HashMap<>();
+
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
             ResultSet rs = stmt.executeQuery();
-            Supplier s = new Supplier(rs.getLong("id_supplier"), rs.getString("CNPJ"),
-                    rs.getString("corporate_Name"), rs.getString("Phone_Number"));
+            while (rs.next()){
+                Supplier s = new Supplier(rs.getLong("id_supplier"), rs.getString("CNPJ"),
+                        rs.getString("corporate_Name"), rs.getString("Phone_Number"));
+                suppliers.put(s.getId(), s);
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return null;
+        return suppliers;
     }
 }
