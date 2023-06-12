@@ -25,7 +25,7 @@ public class InitializeCashDeskUseCase  {
     }
 
     public Long initialize(){
-        long purchaseTotalValue = purchaseDAO.getTotalPrice();
+        long purchaseTotalValue = purchaseDAO.getTotalCost();
         long purchaseRefundTotalValue = productRefundDAO.getTotalPrice();
         long saleTotalValue = saleDAO.getTotaPrice();
         long saleRefundTotalValue = saleRefundDAO.getTotalPrice();

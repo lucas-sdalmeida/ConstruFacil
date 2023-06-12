@@ -85,7 +85,7 @@ public class PurchaseSQliteDAO implements PurchaseDAO {
     }
 
     @Override
-    public long getTotalPrice() {
+    public long getTotalCost() {
         return 0;
     }
 
