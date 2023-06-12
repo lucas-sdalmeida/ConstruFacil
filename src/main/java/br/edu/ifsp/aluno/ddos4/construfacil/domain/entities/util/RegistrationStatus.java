@@ -3,8 +3,8 @@ package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.util;
 import java.util.Arrays;
 
 public enum RegistrationStatus {
-    ACTIVE("Active"),
-    INACTIVE("Inactive");
+    ACTIVE("ACTIVE"),
+    INACTIVE("INACTIVE");
 
     private final String description;
 
