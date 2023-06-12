@@ -42,7 +42,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         }
     }
 
-    //todo: conferir se o default está sendo usado corretamente
     private String createCustomerTableSql(){
         StringBuilder builder = new StringBuilder();
 
@@ -60,7 +59,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         return builder.toString();
     }
 
-    //todo: conferir o o default está correto
     private String createProductTableSql(){
         StringBuilder builder = new StringBuilder();
 
@@ -109,7 +107,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("REFERENCES SUPPLIER_SUPPLIES(id_supplier, id_product, purchase_date)");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -123,7 +120,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("CONSTRAINT id_purchase_refund_fk FOREIGN KEY (id_purchase) REFERENCES purchase(id_purchase)");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -141,7 +137,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("CONSTRAINT quantity_buyies_ck CHECK (quantity > 0)\n");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -158,7 +153,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("REFERENCES CUSTOMER_BUYS(id_product, id_customer, sale_date)");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -172,7 +166,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("CONSTRAINT id_sale_refund_fk FOREIGN KEY (id_sale) REFERENCES sale(id_sale)");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -190,7 +183,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
         builder.append("CONSTRAINT quantity_supplies CHECK (quantity > 0)\n");
         builder.append(");");
 
-        System.out.println(builder.toString());
         return builder.toString();
     }
 }
