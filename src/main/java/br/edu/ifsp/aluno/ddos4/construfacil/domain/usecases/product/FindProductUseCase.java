@@ -14,7 +14,7 @@ public class FindProductUseCase {
         this.productDAO = productDAO;
     }
 
-    public Optional<Product> findOneBy(Long id){
+    public Optional<Product> findOneById(Long id){
         Objects.requireNonNull(id);
 
         return  productDAO.findOneByKey(id);
