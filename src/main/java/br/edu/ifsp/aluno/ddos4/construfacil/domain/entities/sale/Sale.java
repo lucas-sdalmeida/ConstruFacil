@@ -12,8 +12,8 @@ import java.util.Objects;
 
 public class Sale {
     private Long id;
-    private final LocalDateTime issueDate;
-    private final Customer customer;
+    private LocalDateTime issueDate;
+    private Customer customer;
     private final Map<SaleItem, Long> saleItems = new HashMap<>();
 
     public Sale(Long id, LocalDateTime issueDate, Customer customer) {
@@ -22,8 +22,8 @@ public class Sale {
         this.customer = customer;
     }
 
-    public Sale(LocalDateTime issueDate, Customer customer) {
-        this(null, issueDate, customer);
+    public Sale() {
+        this(null, null, null);
     }
 
     public Long getTotalPriceInCents() {
@@ -39,10 +39,24 @@ public class Sale {
                 .anyMatch(item -> item.getProduct().equals(product));
     }
 
+    public long getProductQuantity(Product product) {
+        if (!hasProduct(product))
+            return 0L;
+
+        return saleItems.keySet().stream()
+                .filter(item -> item.getProduct().equals(product))
+                .mapToLong(this::getSaleItemQuantity)
+                .sum();
+    }
+
     public boolean hasSaleItem(SaleItem saleItem) {
         Objects.requireNonNull(saleItem);
 
         return saleItems.containsKey(saleItem);
+    }
+
+    public boolean hasSaleItems() {
+        return !saleItems.isEmpty();
     }
 
     public List<SaleItem> getSaleItemsList() {
@@ -81,6 +95,12 @@ public class Sale {
             throw new IllegalArgumentException("There is not such item in this sale!");
 
         long currentQuantity = saleItems.get(saleItem);
+        Product product = saleItem.getProduct();
+
+        if (getProductQuantity(product) + amount > product.getQuantity())
+            throw new IllegalArgumentException("Cannot increase the quantity by this value because " +
+                    "there is not enough stock for this product!");
+
         saleItems.put(saleItem, currentQuantity + amount);
     }
 
@@ -114,8 +134,16 @@ public class Sale {
         return issueDate;
     }
 
+    public void setIssueDate(LocalDateTime issueDate) {
+        this.issueDate = issueDate;
+    }
+
     public Customer getCustomer() {
         return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override
