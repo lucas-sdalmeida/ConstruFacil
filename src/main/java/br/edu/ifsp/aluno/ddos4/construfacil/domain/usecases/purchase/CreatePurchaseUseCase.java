@@ -33,7 +33,7 @@ public class CreatePurchaseUseCase {
         return instance;
     }
 
-    public void finishAndSavePurchase() {
+    public Long finishAndSavePurchase() {
         PurchaseValidator validator = new PurchaseValidator();
         Notification notification = validator.validate(purchase);
 
@@ -43,12 +43,18 @@ public class CreatePurchaseUseCase {
         if (purchase.getIssueDate() == null)
             purchase.setIssueDate(LocalDateTime.now());
 
-        purchaseDAO.findOneByKey(purchase.getSupplier(), purchase.getIssueDate())
+        purchaseDAO.findOneBySupplierAndDate(purchase.getSupplier(), purchase.getIssueDate())
                 .ifPresent(purchase -> {
                     throw new EntityAlreadyExistsException("This purchase has already been finished!");
                 });
 
         purchaseDAO.save(purchase);
+        long purchaseId = purchaseDAO.findOneBySupplierAndDate(purchase.getSupplier(), purchase.getIssueDate())
+                                .orElseThrow(() -> new EntityNotFoundException("Could not save the purchase!"))
+                                .getId();
+        purchase.setId(purchaseId);
+
+        return purchaseId;
     }
 
     public void assignSupplierById(long supplierId) {

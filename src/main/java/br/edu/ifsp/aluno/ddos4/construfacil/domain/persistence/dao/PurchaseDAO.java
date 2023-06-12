@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface PurchaseDAO extends DAO<Long, Purchase> {
-    Optional<Purchase> findOneByKey(Supplier supplier, LocalDateTime date);
+    Optional<Purchase> findOneBySupplierAndDate(Supplier supplier, LocalDateTime date);
 
     Map<Long, Purchase> findSomeByDate(LocalDateTime date);
 

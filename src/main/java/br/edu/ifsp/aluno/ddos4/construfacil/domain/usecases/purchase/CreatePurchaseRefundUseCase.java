@@ -1,4 +1,4 @@
-package br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases.product;
+package br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases.purchase;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.Purchase;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.PurchaseRefund;
@@ -13,24 +13,16 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class CreatePurchaseRefundUseCase {
-    private final PurchaseDAO purchaseDAO;
-    private final FindSupplierUseCase findSupplierUseCase;
+    private final FindPurchaseUseCase findPurchaseUseCase;
     private final PurchaseRefundDAO purchaseRefundDAO;
 
-    public CreatePurchaseRefundUseCase(PurchaseDAO purchaseDAO, FindSupplierUseCase findSupplierUseCase,
-                                       PurchaseRefundDAO purchaseRefundDAO) {
-        this.purchaseDAO = purchaseDAO;
-        this.findSupplierUseCase = findSupplierUseCase;
+    public CreatePurchaseRefundUseCase(FindPurchaseUseCase findPurchaseUseCase, PurchaseRefundDAO purchaseRefundDAO) {
+        this.findPurchaseUseCase = findPurchaseUseCase;
         this.purchaseRefundDAO = purchaseRefundDAO;
     }
 
-    public void createRefund(long supplierId, LocalDateTime issueDate) {
-        Objects.requireNonNull(issueDate);
-
-        Supplier supplier = findSupplierUseCase.findOneById(supplierId)
-                                .orElseThrow(() -> new EntityNotFoundException("There is not such supplier!"));
-
-        Purchase purchase = purchaseDAO.findOneByKey(supplier, issueDate)
+    public void createRefund(long purchaseId) {
+        Purchase purchase = findPurchaseUseCase.findOneById(purchaseId)
                                 .orElseThrow(() -> new EntityNotFoundException("There is no purchase to this " +
                                             "supplier at this date and time!"));
 

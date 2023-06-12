@@ -21,6 +21,10 @@ public class FindPurchaseUseCase {
         this.findProductUseCase = findProductUseCase;
     }
 
+    public Optional<Purchase> findOneById(long purchaseId) {
+
+    }
+
     public Optional<Purchase> findOneBySupplierIdAndDateTime(long supplierId, LocalDateTime issueDate) {
         return Optional.empty();
     }
@@ -38,6 +42,6 @@ public class FindPurchaseUseCase {
     }
 
     public List<Purchase> findAll() {
-        
+
     }
 }

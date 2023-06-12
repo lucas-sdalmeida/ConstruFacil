@@ -11,17 +11,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public final class Purchase {
+    private Long id;
     private LocalDateTime issueDate;
     private Supplier supplier;
     private final Map<PurchaseItem, Long> purchasingItems = new HashMap<>();
 
-    public Purchase(LocalDateTime issueDate, Supplier supplier) {
+    public Purchase(Long id, LocalDateTime issueDate, Supplier supplier) {
+        this.id = id;
         this.issueDate = issueDate;
         this.supplier = supplier;
     }
 
     public Purchase() {
-        this(null, null);
+        this(null, null, null);
     }
 
     public Long getTotalPriceInCents() {
@@ -126,6 +128,14 @@ public final class Purchase {
         }
 
         purchasingItems.put(purchaseItem, currentQuantity - amount);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getIssueDate() {
