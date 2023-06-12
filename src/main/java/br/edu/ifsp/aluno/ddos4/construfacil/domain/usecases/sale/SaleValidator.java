@@ -13,8 +13,10 @@ public class SaleValidator extends Validator<Sale> {
 
         Notification notification = new Notification();
 
-        if (Validator.isNullOrEmpty(sale.getCustomer().getCpf()))
-            notification.addMessage("Costumer's CPF is required!");
+        if (sale.getCustomer() == null)
+            notification.addMessage("A customer must be assigned to this sale!");
+        if (!sale.hasSaleItems())
+            notification.addMessage("A sale without items is useless at all!");
 
         return notification;
     }
