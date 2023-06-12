@@ -1,5 +1,7 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier;
 
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.util.RegistrationStatus;
+
 import java.util.Objects;
 
 public class Supplier {
@@ -7,16 +9,18 @@ public class Supplier {
     private final String cnpj;
     private final String corporateName;
     private String phoneNumber;
+    private RegistrationStatus status;
 
-    public Supplier(Long id, String cnpj, String corporateName, String phoneNumber) {
+    public Supplier(Long id, String cnpj, String corporateName, String phoneNumber, RegistrationStatus status) {
         this.id = id;
         this.cnpj = cnpj;
         this.corporateName = corporateName;
         this.phoneNumber = phoneNumber;
+        this.status = status;
     }
 
     public Supplier(String cnpj, String corporateName, String phoneNumber) {
-        this(null, cnpj, corporateName, phoneNumber);
+        this(null, cnpj, corporateName, phoneNumber, RegistrationStatus.ACTIVE);
     }
 
     public Long getId() {
@@ -41,6 +45,14 @@ public class Supplier {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public RegistrationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RegistrationStatus status) {
+        this.status = status;
     }
 
     @Override

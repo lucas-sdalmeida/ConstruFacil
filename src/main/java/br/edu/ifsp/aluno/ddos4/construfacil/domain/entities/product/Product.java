@@ -1,5 +1,7 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product;
 
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.util.RegistrationStatus;
+
 import java.util.Objects;
 
 public class Product {
@@ -7,16 +9,18 @@ public class Product {
     private final String name;
     private int quantity;
     private Long averagePurchasePriceInCents;
+    private RegistrationStatus status;
 
-    public Product(Long id, String name, int quantity, Long averagePurchasePriceInCents) {
+    public Product(Long id, String name, int quantity, Long averagePurchasePriceInCents, RegistrationStatus status) {
         this.id = id;
         this.name = name;
         setQuantity(quantity);
         setAveragePurchasePriceInCents(averagePurchasePriceInCents);
+        this.status = status;
     }
 
     public Product(String name, int quantity, Long averagePurchasePriceInCents) {
-        this(null, name, quantity, averagePurchasePriceInCents);
+        this(null, name, quantity, averagePurchasePriceInCents, RegistrationStatus.ACTIVE);
     }
 
     public Long getId() {
@@ -49,6 +53,14 @@ public class Product {
         if (averagePurchasePriceInCents < 0)
             throw new IllegalArgumentException("The default purchase price cannot be lower than zero!");
         this.averagePurchasePriceInCents = averagePurchasePriceInCents;
+    }
+
+    public RegistrationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RegistrationStatus status) {
+        this.status = status;
     }
 
     @Override
