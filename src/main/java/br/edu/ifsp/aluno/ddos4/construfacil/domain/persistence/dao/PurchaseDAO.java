@@ -12,9 +12,11 @@ import java.util.Optional;
 public interface PurchaseDAO extends DAO<Long, Purchase> {
     Optional<Purchase> findOneBySupplierAndDate(Supplier supplier, LocalDateTime date);
 
-    Map<Long, Purchase> findSomeByDate(LocalDateTime date);
+    Map<Long, Purchase> findSomeByPeriod(LocalDateTime start, LocalDateTime end);
 
     Map<Long, Purchase> findSomeBySupplier(Supplier supplier);
+
+    Map<Long, Purchase> findSomeByProduct(Product product);
 
     long getTotalCost();
 
