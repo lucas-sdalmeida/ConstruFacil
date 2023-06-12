@@ -11,22 +11,23 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public final class Purchase {
-    private Long id;
-    private final LocalDateTime issueDate;
-    private final Supplier supplier;
+    private LocalDateTime issueDate;
+    private Supplier supplier;
     private final Map<PurchaseItem, Long> purchasingItems = new HashMap<>();
 
-    public Purchase(Long id, LocalDateTime issueDate, Supplier supplier) {
-        this.id = id;
+    public Purchase(LocalDateTime issueDate, Supplier supplier) {
         this.issueDate = issueDate;
         this.supplier = supplier;
     }
 
-    public Purchase(LocalDateTime issueDate, Supplier supplier) {
-        this(null, issueDate, supplier);
+    public Purchase() {
+        this(null, null);
     }
 
     public Long getTotalPriceInCents() {
+        if (!hasItems())
+            return 0L;
+
         return purchasingItems.keySet().stream()
                 .mapToLong(item -> item.getPriceInCents() * purchasingItems.get(item))
                 .sum();
@@ -37,6 +38,22 @@ public final class Purchase {
 
         return purchasingItems.keySet().stream()
                 .anyMatch(item -> item.getProduct().equals(product));
+    }
+
+    public Long getProductQuantity(Product product) {
+        Objects.requireNonNull(product);
+
+        if (!hasProduct(product))
+            return 0L;
+
+        return purchasingItems.keySet().stream()
+                .filter(item -> item.getProduct().equals(product))
+                .mapToLong(purchasingItems::get)
+                .sum();
+    }
+
+    public boolean hasItems() {
+        return !purchasingItems.isEmpty();
     }
 
     public boolean hasPurchaseItem(PurchaseItem purchaseItem) {
@@ -51,6 +68,9 @@ public final class Purchase {
 
     public Long getPurchaseItemQuantity(PurchaseItem purchaseItem) {
         Objects.requireNonNull(purchaseItem);
+
+        if (!hasPurchaseItem(purchaseItem))
+            return 0L;
 
         return purchasingItems.get(purchaseItem);
     }
@@ -81,6 +101,12 @@ public final class Purchase {
             throw new IllegalArgumentException("There is not such item in this purchase!");
 
         long currentQuantity = purchasingItems.get(purchaseItem);
+        Product product = purchaseItem.getProduct();
+
+        if (getProductQuantity(product) + amount > product.getQuantity())
+            throw new IllegalArgumentException("Cannot increase quantity by this amount because there is not"
+                                + " enough stock of this product!");
+
         purchasingItems.put(purchaseItem, currentQuantity + amount);
     }
 
@@ -102,20 +128,20 @@ public final class Purchase {
         purchasingItems.put(purchaseItem, currentQuantity - amount);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public LocalDateTime getIssueDate() {
         return issueDate;
     }
 
+    public void setIssueDate(LocalDateTime issueDate) {
+        this.issueDate = issueDate;
+    }
+
     public Supplier getSupplier() {
         return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     @Override
