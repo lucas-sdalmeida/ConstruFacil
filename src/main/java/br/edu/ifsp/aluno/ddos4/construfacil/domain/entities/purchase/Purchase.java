@@ -103,11 +103,6 @@ public final class Purchase {
             throw new IllegalArgumentException("There is not such item in this purchase!");
 
         long currentQuantity = purchasingItems.get(purchaseItem);
-        Product product = purchaseItem.getProduct();
-
-        if (getProductQuantity(product) + amount > product.getQuantity())
-            throw new IllegalArgumentException("Cannot increase quantity by this amount because there is not"
-                                + " enough stock of this product!");
 
         purchasingItems.put(purchaseItem, currentQuantity + amount);
     }
