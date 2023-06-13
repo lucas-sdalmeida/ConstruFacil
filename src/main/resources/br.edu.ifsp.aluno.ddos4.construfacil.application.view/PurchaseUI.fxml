@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.view.PurchaseUI">
+   <children>
+      <Label layoutX="21.0" layoutY="22.0" text="ID purchase:" />
+      <Label layoutX="24.0" layoutY="57.0" text="ID Product:" />
+      <Label layoutX="300.0" layoutY="22.0" text="ID  Supplier:" />
+      <Label layoutX="294.0" layoutY="57.0" text="Purchase Date:" />
+      <TextField layoutX="97.0" layoutY="18.0" prefHeight="26.0" prefWidth="190.0" />
+      <TextField layoutX="97.0" layoutY="53.0" prefHeight="26.0" prefWidth="190.0" />
+      <TextField layoutX="379.0" layoutY="18.0" prefHeight="26.0" prefWidth="190.0" />
+      <TextField layoutX="379.0" layoutY="54.0" prefHeight="26.0" prefWidth="190.0" />
+      <Button layoutX="518.0" layoutY="361.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="448.0" layoutY="361.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="28.0" layoutY="361.0" mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>
