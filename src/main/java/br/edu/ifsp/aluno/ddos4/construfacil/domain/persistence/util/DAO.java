@@ -8,7 +8,9 @@ public interface DAO <K, T>{
 
     void update(T type);
 
-    Optional<T> findOneByKey(K id);
+    Optional<T> findOneByKey(K key);
 
     Map<K, T> findAll();
+
+    void deleteByKey(K key);
 }
