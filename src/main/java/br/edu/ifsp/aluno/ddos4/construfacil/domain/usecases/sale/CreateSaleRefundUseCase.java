@@ -1,6 +1,7 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases.sale;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale.Sale;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale.SaleItem;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale.SaleRefund;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.SaleRefundDAO;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases.util.EntityAlreadyExistsException;
@@ -24,10 +25,22 @@ public class CreateSaleRefundUseCase {
                     throw new EntityAlreadyExistsException("There already is a refund for this Sale!");
                 });
 
-        saleRefundDAO.save(new SaleRefund(sale));
-
-        return saleRefundDAO.findOneBySale(sale)
+        SaleRefund refund = new SaleRefund(sale);
+        saleRefundDAO.save(refund);
+        long refundId = saleRefundDAO.findOneBySale(sale)
                             .orElseThrow(() -> new EntityNotFoundException("Could not save the refund!"))
                             .getId();
+        refund.setId(refundId);
+        updateProducts(sale);
+
+        return refundId;
+    }
+
+    private void updateProducts(Sale sale) {
+        sale.getSaleItemsList()
+                .stream()
+                .map(SaleItem::getProduct)
+                .distinct()
+                .forEach(product -> product.increaseStockQuantityBy(sale.getProductQuantity(product)));
     }
 }

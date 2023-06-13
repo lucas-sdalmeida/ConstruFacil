@@ -1,6 +1,7 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases.sale;
 
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer.Customer;
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale.Sale;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale.SaleItem;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.dao.SaleDAO;
@@ -53,8 +54,17 @@ public class CreateSaleUseCase {
                             .orElseThrow(() -> new EntityNotFoundException("Could not save this sale!"))
                             .getId();
         sale.setId(saleId);
+        updateProducts();
 
         return saleId;
+    }
+
+    private void updateProducts() {
+        sale.getSaleItemsList()
+                .stream()
+                .map(SaleItem::getProduct)
+                .distinct()
+                .forEach(product -> product.decreaseStockQuantityBy(sale.getProductQuantity(product)));
     }
 
     public void assignCustomerById(long customerId) {
