@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class ProductSQliteDAO implements ProductDAO{
+public class ProductSQLiteDAO implements ProductDAO{
     @Override
     public void save(Product product) {
         String sql = "INSERT INTO product (name, quantity, average_purchase_price) " +

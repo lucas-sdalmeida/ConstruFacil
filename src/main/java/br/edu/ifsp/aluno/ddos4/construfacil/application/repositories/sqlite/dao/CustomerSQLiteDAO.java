@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class CustomerSQliteDAO implements CustomerDAO{
+public class CustomerSQLiteDAO implements CustomerDAO{
     @Override
     public void save(Customer customer) {
         String sql = "INSERT INTO customer (name, CPF, address, phone_Number) " +

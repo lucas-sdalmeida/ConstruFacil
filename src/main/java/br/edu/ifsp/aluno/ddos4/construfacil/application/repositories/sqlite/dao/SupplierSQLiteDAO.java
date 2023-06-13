@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class SupplierSQliteDAO implements SupplierDAO {
+public class SupplierSQLiteDAO implements SupplierDAO {
     @Override
     public void save(Supplier supplier) {
         String sql = "INSERT INTO Supplier (CNPJ, corporate_Name, Phone_Number) VALUES (?, ?, ?)";
