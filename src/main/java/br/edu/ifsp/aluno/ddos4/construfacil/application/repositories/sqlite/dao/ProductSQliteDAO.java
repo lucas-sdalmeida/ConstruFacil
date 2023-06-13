@@ -16,14 +16,13 @@ import java.util.Optional;
 public class ProductSQliteDAO implements ProductDAO{
     @Override
     public void save(Product product) {
-        String sql = "INSERT INTO product (id_product, name, quantity, average_purchase_price) " +
-                            "VALUES (?, ?, ?, 0)";
+        String sql = "INSERT INTO product (name, quantity, average_purchase_price) " +
+                            "VALUES (?, ?, 0)";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
-            stmt.setLong(1, product.getId());
-            stmt.setString(2, product.getName());
-            stmt.setLong(3, product.getStockQuantity());
+            stmt.setString(1, product.getName());
+            stmt.setLong(2, product.getStockQuantity());
 
             stmt.executeUpdate();
         }
@@ -50,6 +49,7 @@ public class ProductSQliteDAO implements ProductDAO{
             e.printStackTrace();
         }
     }
+
     @Override
     public Optional<Product> findOneByName(String name) {
         String sql = "SELECT id_product, name, quantity, average_purchase_price, status FROM product WHERE name=?";
