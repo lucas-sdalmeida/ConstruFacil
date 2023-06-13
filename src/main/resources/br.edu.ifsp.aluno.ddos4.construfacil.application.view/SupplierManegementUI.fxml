@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.SupplierManegementUI">
+   <children>
+      <TableView layoutX="21.0" layoutY="14.0" prefHeight="329.0" prefWidth="562.0">
+        <columns>
+          <TableColumn fx:id="cIDSupplier" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="cCorporateName" prefWidth="224.00003814697266" text="Corporate Name" />
+            <TableColumn fx:id="cCNPJ" prefWidth="137.5999755859375" text="CNPJ" />
+            <TableColumn fx:id="cPhoneNumberSupplier" prefWidth="123.20000610351565" text="Phone Number" />
+        </columns>
+      </TableView>
+      <Button fx:id="bNew" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertSupplier" text="New" />
+      <Button fx:id="bEdit" layoutX="483.0" layoutY="361.0" mnemonicParsing="false" onAction="#updateSupplier" text="Edit" />
+      <Button fx:id="bBack" layoutX="21.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Button" />
+   </children>
+</AnchorPane>
