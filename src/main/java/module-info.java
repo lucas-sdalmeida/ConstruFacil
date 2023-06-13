@@ -6,5 +6,12 @@ module br.edu.ifsp.aluno.ddos4.construfacil {
 
 
     opens br.edu.ifsp.aluno.ddos4.construfacil.application.main to javafx.fxml;
+
+    opens br.edu.ifsp.aluno.ddos4.construfacil.application.view to javafx.fxml;
+    opens br.edu.ifsp.aluno.ddos4.construfacil.application.controller to javafx.fxml;
+
+    exports br.edu.ifsp.aluno.ddos4.construfacil.application.view;
+    exports br.edu.ifsp.aluno.ddos4.construfacil.application.controller;
+
     exports br.edu.ifsp.aluno.ddos4.construfacil.application.main;
 }
