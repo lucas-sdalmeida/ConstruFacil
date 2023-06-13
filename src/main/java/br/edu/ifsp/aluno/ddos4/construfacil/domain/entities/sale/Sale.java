@@ -97,7 +97,7 @@ public class Sale {
         long currentQuantity = saleItems.get(saleItem);
         Product product = saleItem.getProduct();
 
-        if (getProductQuantity(product) + amount > product.getQuantity())
+        if (getProductQuantity(product) + amount > product.getStockQuantity())
             throw new IllegalArgumentException("Cannot increase the quantity by this value because " +
                     "there is not enough stock for this product!");
 

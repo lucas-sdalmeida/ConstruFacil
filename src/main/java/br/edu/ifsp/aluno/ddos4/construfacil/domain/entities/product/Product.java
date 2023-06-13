@@ -7,20 +7,20 @@ import java.util.Objects;
 public class Product {
     private Long id;
     private final String name;
-    private int quantity;
+    private long stockQuantity;
     private Long averagePurchasePriceInCents;
     private RegistrationStatus status;
 
-    public Product(Long id, String name, int quantity, Long averagePurchasePriceInCents, RegistrationStatus status) {
+    public Product(Long id, String name, int stockQuantity, Long averagePurchasePriceInCents, RegistrationStatus status) {
         this.id = id;
         this.name = name;
-        setQuantity(quantity);
+        increaseStockQuantityBy(stockQuantity);
         setAveragePurchasePriceInCents(averagePurchasePriceInCents);
         this.status = status;
     }
 
-    public Product(String name, int quantity, Long averagePurchasePriceInCents) {
-        this(null, name, quantity, averagePurchasePriceInCents, RegistrationStatus.ACTIVE);
+    public Product(String name, int stockQuantity, Long averagePurchasePriceInCents) {
+        this(null, name, stockQuantity, averagePurchasePriceInCents, RegistrationStatus.ACTIVE);
     }
 
     public Long getId() {
@@ -35,14 +35,20 @@ public class Product {
         return name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public long getStockQuantity() {
+        return stockQuantity;
     }
 
-    public void setQuantity(int quantity) {
-        if (quantity < 0)
-            throw new IllegalArgumentException("Quantity must be a non-negative number!");
-        this.quantity = quantity;
+    public void increaseStockQuantityBy(long amount) {
+        if (amount < 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        stockQuantity += amount;
+    }
+
+    public void decreaseStockQuantityBy(long amount) {
+        if (amount <= 0)
+            throw new IllegalArgumentException("The amount must be a non-negative number!");
+        stockQuantity -= amount;
     }
 
     public Long getAveragePurchasePriceInCents() {

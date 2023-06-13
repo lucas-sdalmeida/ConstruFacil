@@ -16,7 +16,7 @@ public class ProductValidator extends Validator<Product> {
 
         if(Validator.isNullOrEmpty(product.getName()))
             notification.addMessage("Product's name is required!");
-        if (product.getQuantity() < 0)
+        if (product.getStockQuantity() < 0)
             notification.addMessage("Product's quantity cannot be a negative value!");
 
         return notification;
