@@ -1,5 +1,6 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.usecases.purchase;
 
+import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.product.Product;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.Purchase;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase.PurchaseItem;
 import br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.supplier.Supplier;
@@ -53,6 +54,7 @@ public class CreatePurchaseUseCase {
                                 .orElseThrow(() -> new EntityNotFoundException("Could not save the purchase!"))
                                 .getId();
         purchase.setId(purchaseId);
+        updateProducts();
 
         return purchaseId;
     }
@@ -62,6 +64,21 @@ public class CreatePurchaseUseCase {
                             .orElseThrow(() -> new EntityNotFoundException("There is not such supplier!"));
 
         purchase.setSupplier(supplier);
+    }
+
+    private void updateProducts() {
+        purchase.getPurchasingItemsList()
+                .stream()
+                .map(PurchaseItem::getProduct)
+                .distinct()
+                .forEach(this::updateProduct);
+    }
+
+    private void updateProduct(Product product) {
+        Objects.requireNonNull(product);
+
+        product.increaseStockQuantityBy(purchase.getProductQuantity(product));
+        product.setAveragePurchasePriceInCents(purchaseDAO.getAverageCostByProduct(product));
     }
 
     public void addPurchaseItem(PurchaseItem item) {
