@@ -11,7 +11,8 @@ public class Product {
     private Long averagePurchasePriceInCents;
     private RegistrationStatus status;
 
-    public Product(Long id, String name, int stockQuantity, Long averagePurchasePriceInCents, RegistrationStatus status) {
+    public Product(Long id, String name, long stockQuantity, Long averagePurchasePriceInCents,
+                   RegistrationStatus status) {
         this.id = id;
         this.name = name;
         increaseStockQuantityBy(stockQuantity);
@@ -19,7 +20,7 @@ public class Product {
         this.status = status;
     }
 
-    public Product(String name, int stockQuantity, Long averagePurchasePriceInCents) {
+    public Product(String name, long stockQuantity, Long averagePurchasePriceInCents) {
         this(null, name, stockQuantity, averagePurchasePriceInCents, RegistrationStatus.ACTIVE);
     }
 
