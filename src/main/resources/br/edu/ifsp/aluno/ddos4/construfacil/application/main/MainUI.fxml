@@ -4,12 +4,13 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.view.MainUI">
-   <children>
-      <Button fx:id="cSupplier" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToSupplier" text="Fornecedor" />
-      <Button fx:id="cProduct" layoutX="149.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToProduct" text="Produto" />
-      <Button fx:id="cVenda" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToSale" text="Venda" />
-      <Button fx:id="cPurchase" layoutX="410.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToPurchase" text="Compra" />
-      <Button fx:id="cClient" layoutX="274.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToCliente" text="Cliente" />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.view.MainUI">
+   <Button fx:id="cSupplier" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToSupplier"  text="Fornecedor"/>
+   <Button fx:id="cProduct" layoutX="149.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToProduct"
+           text="Produto"/>
+   <Button fx:id="cVenda" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToSale" text="Venda"/>
+   <Button fx:id="cPurchase" layoutX="410.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToPurchase"
+           text="Compra"/>
+   <Button fx:id="cClient" layoutX="274.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToCliente"
+           text="Cliente"/>
 </AnchorPane>
