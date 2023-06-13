@@ -1,5 +1,7 @@
 package br.edu.ifsp.aluno.ddos4.construfacil.domain.persistence.util;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.Optional;
 
@@ -13,4 +15,6 @@ public interface DAO <K, T>{
     Map<K, T> findAll();
 
     void deleteByKey(K key);
+
+    T resultSetToEntity(ResultSet resultSet) throws SQLException;
 }

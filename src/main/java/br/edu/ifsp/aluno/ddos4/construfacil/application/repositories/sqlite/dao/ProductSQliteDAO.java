@@ -45,7 +45,8 @@ public class ProductSQliteDAO implements ProductDAO{
             stmt.setLong(5, product.getId());
 
             stmt.executeUpdate();
-        }catch (SQLException e){
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
     }
@@ -58,17 +59,10 @@ public class ProductSQliteDAO implements ProductDAO{
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()){
-                Product p = new Product(rs.getLong("id_product"),
-                                        rs.getString("name"),
-                                        rs.getLong("quantity"),
-                                        rs.getLong("average_purchase_price"),
-                                        RegistrationStatus.fromString(rs.getString("status"))
-                                );
-
-                return Optional.of(p);
-            }
-        }catch (SQLException e){
+            if (rs.next())
+                return Optional.of(resultSetToEntity(rs));
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
 
@@ -85,17 +79,10 @@ public class ProductSQliteDAO implements ProductDAO{
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()){
-                Product p = new Product(rs.getLong("id_product"),
-                                        rs.getString("name"),
-                                        rs.getLong("quantity"),
-                                        rs.getLong("average_purchase_price"),
-                                        RegistrationStatus.fromString(rs.getString("status"))
-                                );
-
-                return Optional.of(p);
-            }
-        }catch (SQLException e){
+            if (rs.next())
+                return Optional.of(resultSetToEntity(rs));
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
         return Optional.empty();
@@ -111,16 +98,11 @@ public class ProductSQliteDAO implements ProductDAO{
             ResultSet rs = stmt.executeQuery();
 
            while (rs.next()){
-                Product p = new Product(rs.getLong("id_product"),
-                                        rs.getString("name"),
-                                        rs.getLong("quantity"),
-                                        rs.getLong("average_purchase_price"),
-                                        RegistrationStatus.fromString(rs.getString("status"))
-                                );
-
+                Product p = resultSetToEntity(rs);
                 products.put(p.getId(), p);
             }
-        }catch (SQLException e){
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
 
@@ -134,7 +116,6 @@ public class ProductSQliteDAO implements ProductDAO{
 
         try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setLong(1, key);
-
             stmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -153,7 +134,8 @@ public class ProductSQliteDAO implements ProductDAO{
 
             if (rs.next())
                 return rs.getLong("average_purchase_price");
-        }catch (SQLException e){
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
         return 0L;
@@ -166,7 +148,6 @@ public class ProductSQliteDAO implements ProductDAO{
 
         try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setLong(1, product.getId());
-
             stmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -181,11 +162,19 @@ public class ProductSQliteDAO implements ProductDAO{
 
         try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setLong(1, product.getId());
-
             stmt.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Product resultSetToEntity(ResultSet rs) throws SQLException {
+        return new Product(rs.getLong("id_product"),
+                rs.getString("name"),
+                rs.getLong("quantity"),
+                rs.getLong("average_purchase_price"),
+                RegistrationStatus.fromString(rs.getString("status"))
+        );
     }
 }
