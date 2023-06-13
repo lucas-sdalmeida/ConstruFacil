@@ -112,7 +112,7 @@ public class ProductSQliteDAO implements ProductDAO{
     }
 
     @Override
-    public long getAveragaPurchasePriceInCentsByProduct(Product product) {
+    public long getAveragePurchasePriceInCentsByProduct(Product product) {
         String sql = "SELECT id_product, name, quantity, average_Purchase_Price FROM Product WHERE average_Purchase_Price=?";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 

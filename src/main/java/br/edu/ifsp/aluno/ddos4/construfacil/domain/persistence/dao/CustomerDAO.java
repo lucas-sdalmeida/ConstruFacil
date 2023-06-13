@@ -8,4 +8,8 @@ import java.util.Optional;
 
 public interface CustomerDAO extends DAO<Long, Customer> {
     Optional<Customer> findOneByCPF(String cpf);
+
+    void inactivate(Customer customer);
+
+    void activate(Customer customer);
 }

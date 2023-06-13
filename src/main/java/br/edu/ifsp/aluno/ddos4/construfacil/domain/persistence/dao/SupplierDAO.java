@@ -16,4 +16,8 @@ public interface SupplierDAO extends DAO<Long, Supplier> {
     Optional<Supplier> findOneByCNPJ(String cnpj);
 
     Map<Long, Supplier> findAll();
+
+    void inactivate(Supplier supplier);
+
+    void activate(Supplier supplier);
 }
