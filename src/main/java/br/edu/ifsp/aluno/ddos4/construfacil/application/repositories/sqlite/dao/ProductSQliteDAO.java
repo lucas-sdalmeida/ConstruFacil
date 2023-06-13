@@ -16,23 +16,25 @@ import java.util.Optional;
 public class ProductSQliteDAO implements ProductDAO{
     @Override
     public void save(Product product) {
-        String sql = "INSERT INTO Product (id_product, name, quantity, average_Purchase_Price) " +
-                "VALUES (?, ?, ?, 0)";
+        String sql = "INSERT INTO product (id_product, name, quantity, average_purchase_price) " +
+                            "VALUES (?, ?, ?, 0)";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setLong(1, product.getId());
             stmt.setString(2, product.getName());
             stmt.setLong(3, product.getStockQuantity());
+
             stmt.executeUpdate();
-        }catch (SQLException e){
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
     }
 
     @Override
     public void update(Product product) {
-        String sql = "UPDATE Product SET name=?, quantity=?, average_Purchase_Price=?, status=? WHERE id_product=?";
+        String sql = "UPDATE product SET name=?, quantity=?, average_purchase_price=?, status=? WHERE id_product=?";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
@@ -41,29 +43,29 @@ public class ProductSQliteDAO implements ProductDAO{
             stmt.setLong(3, product.getAveragePurchasePriceInCents());
             stmt.setString(4, product.getStatus().toString());
             stmt.setLong(5, product.getId());
+
             stmt.executeUpdate();
-            try {
-                stmt.close();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
         }catch (SQLException e){
             e.printStackTrace();
         }
     }
     @Override
     public Optional<Product> findOneByName(String name) {
-        String sql = "SELECT id_product, name, quantity, average_Purchase_Price, status FROM Product WHERE name=?";
+        String sql = "SELECT id_product, name, quantity, average_purchase_price, status FROM product WHERE name=?";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
-        Product product;
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()){
-                Product p = new Product(rs.getLong("id_product"), rs.getString("name"),
-                        rs.getLong("quantity"), rs.getLong("average_Purchase_Price"),
-                        RegistrationStatus.fromString(rs.getString("status")));
+                Product p = new Product(rs.getLong("id_product"),
+                                        rs.getString("name"),
+                                        rs.getLong("quantity"),
+                                        rs.getLong("average_purchase_price"),
+                                        RegistrationStatus.fromString(rs.getString("status"))
+                                );
+
                 return Optional.of(p);
             }
         }catch (SQLException e){
@@ -75,17 +77,22 @@ public class ProductSQliteDAO implements ProductDAO{
 
     @Override
     public Optional<Product> findOneByKey(Long id) {
-        String sql = "SELECT id_product, name, quantity, average_Purchase_Price, status FROM " +
-                "Product WHERE id_product=?";
+        String sql = "SELECT id_product, name, quantity, average_purchase_price, status FROM " +
+                            "product WHERE id_product=?";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()){
-                Product p = new Product(rs.getLong("id_product"), rs.getString("name"),
-                        rs.getLong("quantity"), rs.getLong("average_Purchase_Price"),
-                        RegistrationStatus.fromString(rs.getString("status")));
+                Product p = new Product(rs.getLong("id_product"),
+                                        rs.getString("name"),
+                                        rs.getLong("quantity"),
+                                        rs.getLong("average_purchase_price"),
+                                        RegistrationStatus.fromString(rs.getString("status"))
+                                );
+
                 return Optional.of(p);
             }
         }catch (SQLException e){
@@ -102,10 +109,15 @@ public class ProductSQliteDAO implements ProductDAO{
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
+
            while (rs.next()){
-                Product p = new Product(rs.getLong("id_product"), rs.getString("name"),
-                        rs.getLong("quantity"), rs.getLong("average_Purchase_Price"),
-                        RegistrationStatus.fromString(rs.getString("status")));
+                Product p = new Product(rs.getLong("id_product"),
+                                        rs.getString("name"),
+                                        rs.getLong("quantity"),
+                                        rs.getLong("average_purchase_price"),
+                                        RegistrationStatus.fromString(rs.getString("status"))
+                                );
+
                 products.put(p.getId(), p);
             }
         }catch (SQLException e){
@@ -120,10 +132,10 @@ public class ProductSQliteDAO implements ProductDAO{
         String sql = "DELETE FROM product WHERE id_product = ?";
         ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
-        try (PreparedStatement statement = connectionFactory.getPreparedStatement(sql)) {
-            statement.setLong(1, key);
+        try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
+            stmt.setLong(1, key);
 
-            statement.executeUpdate();
+            stmt.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -132,7 +144,7 @@ public class ProductSQliteDAO implements ProductDAO{
 
     @Override
     public long getAveragePurchasePriceInCentsByProduct(Product product) {
-        String sql = "SELECT average_purchase_price FROM Product WHERE id_product = ?";
+        String sql = "SELECT average_purchase_price FROM product WHERE id_product = ?";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)){
@@ -152,10 +164,10 @@ public class ProductSQliteDAO implements ProductDAO{
         String sql = "UPDATE product SET status = inactive WHERE id_product = ?";
         ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
-        try (PreparedStatement statement = connectionFactory.getPreparedStatement(sql)) {
-            statement.setLong(1, product.getId());
+        try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
+            stmt.setLong(1, product.getId());
 
-            statement.executeUpdate();
+            stmt.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -167,10 +179,10 @@ public class ProductSQliteDAO implements ProductDAO{
         String sql = "UPDATE product SET status = active WHERE id_product = ?";
         ConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
-        try (PreparedStatement statement = connectionFactory.getPreparedStatement(sql)) {
-            statement.setLong(1, product.getId());
+        try (PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
+            stmt.setLong(1, product.getId());
 
-            statement.executeUpdate();
+            stmt.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();
