@@ -70,7 +70,7 @@ public class CustomerSQLiteDAO implements CustomerDAO{
 
     @Override
     public Map<Long, Customer> findAll() {
-        String sql = "SELECT id_customer, name, CPF, address, phone_Number FROM customer";
+        String sql = "SELECT id_customer, name, CPF, address, phone_Number, status FROM customer";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
         Map<Long, Customer> customers = new HashMap<>();
 
@@ -88,7 +88,7 @@ public class CustomerSQLiteDAO implements CustomerDAO{
 
     @Override
     public Optional<Customer> findOneByCPF(String cpf) {
-        String sql = "SELECT id_customer, name, CPF, address, phone_Number FROM customer WHERE CPF=?";
+        String sql = "SELECT id_customer, name, CPF, address, phone_Number, status FROM customer WHERE CPF=?";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {

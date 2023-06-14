@@ -10,7 +10,7 @@ import javafx.scene.Parent;
 import java.io.IOException;
 import java.util.Objects;
 
-public class WindowLoader extends Application {
+public class    WindowLoader extends Application {
     private static Scene scene;
     private static Object controller;
 

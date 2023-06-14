@@ -23,9 +23,9 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
 
     public void buildTables() {
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
+        Connection connection = connectionFactory.getConnection();
 
-        try (Connection connection = connectionFactory.getConnection();
-             Statement stmt = connection.createStatement()) {
+        try (Statement stmt = connection.createStatement()) {
             stmt.addBatch(createCustomerTableSql());
             stmt.addBatch(createProductTableSql());
             stmt.addBatch(createSupplierTableSql());
@@ -149,7 +149,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
                     id_sale_refund INTEGER PRIMARY KEY AUTOINCREMENT,\s
                     id_sale        INTEGER,\s
                     
-                    CONSTRAINT sale_refund_pk PRIMARY KEY (id_sale_refund),
                     CONSTRAINT id_sale_refund_fk FOREIGN KEY (id_sale) REFERENCES sale(id_sale));\s
             """;
     }

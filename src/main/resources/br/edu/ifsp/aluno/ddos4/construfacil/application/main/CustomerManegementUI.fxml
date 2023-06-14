@@ -3,20 +3,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.CustomerManegementUI">
+<AnchorPane prefHeight="297.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.CustomerManegementUI">
    <children>
-      <Button fx:id="cBack" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Voltar" />
-      <TreeTableView fx:id="tTable" layoutX="33.0" layoutY="14.0" prefHeight="316.0" prefWidth="524.0">
-        <columns>
-          <TreeTableColumn fx:id="cID" prefWidth="35.20001220703125" text="ID" />
-          <TreeTableColumn fx:id="cName" prefWidth="105.80001068115234" text="Nome" />
-            <TreeTableColumn fx:id="cCPF" prefWidth="91.0" text="CPF" />
-            <TreeTableColumn fx:id="cAddress" prefWidth="110.79998779296875" text="Endereço" />
-            <TreeTableColumn fx:id="cPhone" prefWidth="122.0" text="Telefone" />
-            <TreeTableColumn fx:id="cStatus" prefWidth="66.20004272460938" text="Status" />
-        </columns>
-      </TreeTableView>
-      <Button fx:id="bInsert" layoutX="531.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertCustomer" text="Inserir" />
-      <Button fx:id="bUpdate" layoutX="456.0" layoutY="361.0" mnemonicParsing="false" onAction="#updateCustomer" text="Atualizar" />
+      <Button fx:id="cBack" layoutX="28.0" layoutY="263.0" mnemonicParsing="false" onAction="#back" text="Voltar" />
+      <Button fx:id="bInsert" layoutX="518.0" layoutY="263.0" mnemonicParsing="false" onAction="#insertCustomer" text="Inserir" />
+      <Button fx:id="bUpdate" layoutX="444.0" layoutY="263.0" mnemonicParsing="false" onAction="#updateCustomer" text="Atualizar" />
+      <TableView fx:id="tTable" layoutX="28.0" layoutY="14.0" prefHeight="238.0" prefWidth="526.0">
+         <columns>
+            <TableColumn fx:id="cID" prefWidth="49.20001411437988" text="ID" />
+            <TableColumn fx:id="cName" prefWidth="120.40001678466797" text="Nome" />
+            <TableColumn fx:id="cCPF" prefWidth="45.0" text="CPF" />
+            <TableColumn fx:id="cPhone" prefWidth="101.19998168945312" text="Telefone" />
+            <TableColumn fx:id="cStatus" prefWidth="68.0" text="Status" />
+            <TableColumn fx:id="cAddress" prefWidth="75.0" text="Endereço" />
+         </columns></TableView>
    </children>
 </AnchorPane>
