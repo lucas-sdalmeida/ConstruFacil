@@ -20,6 +20,7 @@ public class InMemorySaleDAO implements SaleDAO {
     @Override
     public void save(Sale sale) {
         sales.put(++idGenerator, sale);
+        sale.setId(idGenerator);
     }
 
     @Override
