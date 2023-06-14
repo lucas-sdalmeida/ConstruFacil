@@ -30,5 +30,6 @@ public class Main{
 //        RegistryProductUseCase productUseCase = new RegistryProductUseCase(productSQLiteDAO);
 //        Product p1 = new Product("Martelo", 20, 20L);
 //        productUseCase.registry(p1);
+
     }
 }

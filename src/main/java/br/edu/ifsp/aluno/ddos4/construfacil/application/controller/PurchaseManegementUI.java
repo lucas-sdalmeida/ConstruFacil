@@ -7,6 +7,7 @@
 //import javafx.collections.ObservableList;
 //import javafx.event.ActionEvent;
 //import javafx.fxml.FXML;
+//import javafx.scene.control.Button;
 //import javafx.scene.control.TableColumn;
 //import javafx.scene.control.TableView;
 //import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,6 +39,12 @@
 //        loadDataAndShow();
 //    }
 //
+//    @FXML
+//    private Button bUpdate;
+//
+//    @FXML
+//    private Button bInsert;
+//
 //    private void binidTableViewToItemsList() {
 //        tableData = FXCollections.observableArrayList();
 //        tTable.setItems(tableData);
@@ -56,12 +63,18 @@
 //        tableData.addAll(purchases.values());
 //    }
 //
-//    public void insertPurchase(ActionEvent actionEvent) throws IOException {
-//        WindowLoader.setRoot("PurchaseUI");
-//    }
+//    public void insertOrUpdateCustomer(ActionEvent actionEvent) throws IOException{
+//        Button clickButton = (Button) actionEvent.getSource();
 //
-//    public void updatePurchase(ActionEvent actionEvent) throws IOException {
-//        WindowLoader.setRoot("PurchaseUI");
+//        if (clickButton == bInsert) {
+//            WindowLoader.setRoot("SaleUI");
+//            System.out.println("Foi selecionada a opção: Inserir");
+//        }
+//
+//        if (clickButton == bUpdate) {
+//            WindowLoader.setRoot("SaleUI");
+//            System.out.println("Foi selecionada a opção: Atualizar");
+//        }
 //    }
 //
 //    public void back(ActionEvent actionEvent) throws IOException {
