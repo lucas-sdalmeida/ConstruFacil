@@ -32,27 +32,35 @@ public class CreatePurchaseRefundUseCase {
                 });
 
         PurchaseRefund refund = new PurchaseRefund(purchase);
+        updateQuantityOfEachProduct(purchase);
 
         purchaseRefundDAO.save(refund);
         long refundId = purchaseRefundDAO.findOneByPurchase(purchase)
                             .orElseThrow(() -> new EntityNotFoundException("Could not save this refund!"))
                             .getId();
         refund.setId(refundId);
-        updateProducts(purchase);
+        updateAveragePurchasePriceOfEachProduct(purchase);
 
         return refundId;
     }
 
-    private void updateProducts(Purchase purchase) {
+    private void updateAveragePurchasePriceOfEachProduct(Purchase purchase) {
         purchase.getPurchasingItemsList()
                 .stream()
                 .map(PurchaseItem::getProduct)
                 .distinct()
-                .forEach(product -> updateProduct(purchase, product));
+                .forEach(this::updateProductAveragePurchasePrice);
     }
 
-    private void updateProduct(Purchase purchase, Product product) {
-        product.decreaseStockQuantityBy(purchase.getProductQuantity(product));
+    private void updateProductAveragePurchasePrice(Product product) {
         product.setAveragePurchasePriceInCents(purchaseDAO.getAverageCostByProduct(product));
+    }
+
+    private void updateQuantityOfEachProduct(Purchase purchase) {
+        purchase.getPurchasingItemsList()
+                .stream()
+                .map(PurchaseItem::getProduct)
+                .distinct()
+                .forEach(product -> product.decreaseStockQuantityBy(purchase.getProductQuantity(product)));
     }
 }

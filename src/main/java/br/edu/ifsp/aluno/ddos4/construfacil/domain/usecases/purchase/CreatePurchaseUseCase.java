@@ -77,31 +77,42 @@ public class CreatePurchaseUseCase {
     private void updateProduct(Product product) {
         Objects.requireNonNull(product);
 
-        product.increaseStockQuantityBy(purchase.getProductQuantity(product));
         product.setAveragePurchasePriceInCents(purchaseDAO.getAverageCostByProduct(product));
     }
 
     public void addPurchaseItem(PurchaseItem item) {
         purchase.addPurchaseItem(item);
+
+        item.getProduct().increaseStockQuantityBy(1L);
     }
 
     public void increasePurchaseItemQuantityByOne(PurchaseItem item) {
         purchase.increasePurchaseItemQuantityBy(item, 1);
+        item.getProduct().increaseStockQuantityBy(1L);
     }
 
     public void increasePurchaseItemQuantityBy(PurchaseItem item, long amount) {
         purchase.increasePurchaseItemQuantityBy(item, amount);
+        item.getProduct().increaseStockQuantityBy(amount);
     }
 
     public void removePurchaseItem(PurchaseItem item) {
         purchase.removePurchaseItem(item);
+        item.getProduct().decreaseStockQuantityBy(purchase.getPurchaseItemQuantity(item));
     }
 
     public void decreasePurchaseItemQuantityByOne(PurchaseItem item) {
         purchase.decreasePurchaseItemQuantityBy(item, 1);
+        item.getProduct().decreaseStockQuantityBy(1L);
     }
 
     public void decreasePurchaseItemQuantityBy(PurchaseItem item, long amount) {
+        Long itemQuantity = purchase.getPurchaseItemQuantity(item);
+
+        if (itemQuantity < amount)
+            amount = itemQuantity;
+
         purchase.decreasePurchaseItemQuantityBy(item, amount);
+        item.getProduct().decreaseStockQuantityBy(amount);
     }
 }
