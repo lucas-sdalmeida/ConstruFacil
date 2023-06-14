@@ -15,19 +15,22 @@ public class MainUI {
 
 
     public void goToSupplier(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("SupplierUI");
+        WindowLoader.setRoot("SupplierManegementUI");
     }
 
-    public void goToProduct(ActionEvent actionEvent) {
+    public void goToProduct(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("PurchaseManegementUI");
     }
 
     public void goToSale(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("SaleUI");
+        WindowLoader.setRoot("SaleManegementUI");
     }
 
-    public void goToPurchase(ActionEvent actionEvent) {
+    public void goToPurchase(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("PurchaseManegementUI");
     }
 
-    public void goToCliente(ActionEvent actionEvent) {
+    public void goToCustomer(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("CustomerManegementUI");
     }
 }

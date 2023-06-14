@@ -5,12 +5,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.PurchaseManegementUI">
    <children>
-      <TableView layoutX="18.0" layoutY="14.0" prefHeight="320.0" prefWidth="561.0">
+      <TableView fx:id="tTable" layoutX="18.0" layoutY="14.0" prefHeight="320.0" prefWidth="561.0">
         <columns>
-          <TableColumn fx:id="cIDPurchase" prefWidth="95.4000072479248" text="ID Purchase" />
-          <TableColumn fx:id="cIDSupplier" prefWidth="112.00000762939453" text="ID Supplier" />
-            <TableColumn fx:id="cIDProduct" prefWidth="90.4000244140625" text="ID Product" />
-            <TableColumn fx:id="cPurchaseDate" prefWidth="267.1999206542969" text="Purchase Date" />
+          <TableColumn fx:id="cIDPurchase" prefWidth="95.4000072479248" text="ID Compra" />
+          <TableColumn fx:id="cIDSupplier" prefWidth="112.00000762939453" text="ID Fornecedor" />
+            <TableColumn fx:id="cIDProduct" prefWidth="90.4000244140625" text="ID Produto" />
+            <TableColumn fx:id="cPurchaseDate" prefWidth="267.1999206542969" text="Data de Compra" />
         </columns>
       </TableView>
       <Button fx:id="bNew" layoutX="528.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertPurchase" prefHeight="26.0" prefWidth="51.0" text="new" />

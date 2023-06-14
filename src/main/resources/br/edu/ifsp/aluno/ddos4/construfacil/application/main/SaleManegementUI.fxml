@@ -3,19 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.SaleManegementUI">
    <children>
-      <TableView layoutX="31.0" layoutY="14.0" prefHeight="292.0" prefWidth="537.0">
+      <TableView fx:id="tTable" layoutX="31.0" layoutY="14.0" prefHeight="292.0" prefWidth="537.0">
         <columns>
-          <TableColumn fx:id="cIDSale" prefWidth="75.0" text="ID Sale" />
-          <TableColumn fx:id="cIDCostumer" prefWidth="90.0" text="ID  Costumer" />
-            <TableColumn fx:id="cIDProduct" prefWidth="78.0" text="ID Product" />
-            <TableColumn fx:id="cSaleDate" prefWidth="293.0" text="Sale date" />
+          <TableColumn fx:id="cIDSale" prefWidth="75.0" text="ID Venda" />
+          <TableColumn fx:id="cIDCostumer" prefWidth="90.0" text="ID  Cliente" />
+            <TableColumn fx:id="cIDProduct" prefWidth="78.0" text="ID Produto" />
+            <TableColumn fx:id="cSaleDate" prefWidth="293.0" text="Data de Venda" />
         </columns>
       </TableView>
-      <Button fx:id="bNew" layoutX="516.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertSale" prefHeight="25.0" prefWidth="52.0" text="New" />
-      <Button fx:id="bEdit" layoutX="454.0" layoutY="361.0" mnemonicParsing="false" onAction="#updateSale" prefHeight="25.0" prefWidth="45.0" text="Edit" />
-      <Button fx:id="bBack" layoutX="31.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Button fx:id="bNew" layoutX="516.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertSale" prefHeight="25.0" prefWidth="52.0" text="Inserir" />
+      <Button fx:id="bEdit" layoutX="452.0" layoutY="361.0" mnemonicParsing="false" onAction="#updateSale" prefHeight="26.0" prefWidth="48.0" text="Editar" />
+      <Button fx:id="bBack" layoutX="31.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Voltar" />
    </children>
 </AnchorPane>

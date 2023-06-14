@@ -12,12 +12,10 @@ import java.util.Objects;
 
 public class WindowLoader extends Application {
     private static Scene scene;
-    private static Objects controller;
+    private static Object controller;
 
     @Override
     public void start(Stage stage) throws IOException {
-        //Pane sceneGraph = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("MainUI.fxml")));
-        //Scene scene = new Scene(sceneGraph);
         scene = new Scene(loadFXML("MainUI"));
         stage.setScene(scene);
         stage.show();
@@ -27,14 +25,14 @@ public class WindowLoader extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException{
+    private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader = fxmlLoader.load(WindowLoader.class.getResource(fxml + ".fxml").openStream());
+        Parent root = fxmlLoader.load(Objects.requireNonNull(WindowLoader.class.getResource(fxml + ".fxml")).openStream());
         controller = fxmlLoader.getController();
-        return fxmlLoader.load();
+        return root;
     }
 
-    public static Objects getController() {
+    public static Object getController() {
         return controller;
     }
 }

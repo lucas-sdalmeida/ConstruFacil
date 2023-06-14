@@ -5,13 +5,7 @@ import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
-public class ProductManegementUI {
-    public void insertProduct(ActionEvent actionEvent) {
-    }
-
-    public void editProduct(ActionEvent actionEvent) {
-    }
-
+public class CustomerManegementUI {
     public void back(ActionEvent actionEvent) throws IOException {
         WindowLoader.setRoot("MainUI");
     }

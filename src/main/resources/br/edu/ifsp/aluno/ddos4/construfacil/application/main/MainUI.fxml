@@ -11,6 +11,6 @@
    <Button fx:id="cVenda" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToSale" text="Venda"/>
    <Button fx:id="cPurchase" layoutX="410.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToPurchase"
            text="Compra"/>
-   <Button fx:id="cClient" layoutX="274.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToCliente"
+   <Button fx:id="cClient" layoutX="274.0" layoutY="361.0" mnemonicParsing="false" onAction="#goToCustomer"
            text="Cliente"/>
 </AnchorPane>

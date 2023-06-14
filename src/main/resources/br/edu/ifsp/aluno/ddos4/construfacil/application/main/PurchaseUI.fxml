@@ -5,16 +5,15 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.view.PurchaseUI">
    <children>
-      <Label layoutX="21.0" layoutY="22.0" text="ID purchase:" />
-      <Label layoutX="24.0" layoutY="57.0" text="ID Product:" />
-      <Label layoutX="300.0" layoutY="22.0" text="ID  Supplier:" />
-      <Label layoutX="294.0" layoutY="57.0" text="Purchase Date:" />
-      <TextField layoutX="97.0" layoutY="18.0" prefHeight="26.0" prefWidth="190.0" />
-      <TextField layoutX="97.0" layoutY="53.0" prefHeight="26.0" prefWidth="190.0" />
-      <TextField layoutX="379.0" layoutY="18.0" prefHeight="26.0" prefWidth="190.0" />
-      <TextField layoutX="379.0" layoutY="54.0" prefHeight="26.0" prefWidth="190.0" />
-      <Button layoutX="518.0" layoutY="361.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="448.0" layoutY="361.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="28.0" layoutY="361.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="21.0" layoutY="22.0" text="ID compra:" />
+      <Label layoutX="24.0" layoutY="57.0" text="ID produto:" />
+      <Label layoutX="300.0" layoutY="22.0" text="ID  Fornecedor:" />
+      <Label layoutX="294.0" layoutY="57.0" text="Data de Compra:" />
+      <TextField fx:id="txtIDPurchase" layoutX="97.0" layoutY="18.0" prefHeight="26.0" prefWidth="190.0" />
+      <TextField fx:id="txtIDProduct" layoutX="97.0" layoutY="53.0" prefHeight="26.0" prefWidth="190.0" />
+      <TextField fx:id="txtIDSupplier" layoutX="391.0" layoutY="18.0" prefHeight="26.0" prefWidth="178.0" />
+      <TextField fx:id="txtPurchaseDate" layoutX="391.0" layoutY="54.0" prefHeight="26.0" prefWidth="178.0" />
+      <Button layoutX="528.0" layoutY="361.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="cBack" layoutX="28.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Voltar" />
    </children>
 </AnchorPane>

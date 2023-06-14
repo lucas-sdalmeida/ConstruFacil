@@ -51,7 +51,6 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
                     address VARCHAR(100),\s
                     phone_Number VARCHAR(20),\s
                     status VARCHAR(10) DEFAULT 'ACTIVE',\s
-                    
                     CONSTRAINT cpf_un UNIQUE (CPF)
                 );
             """;
@@ -98,7 +97,7 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
                     
                     CONSTRAINT purchase_pk PRIMARY KEY (id_purchase),
                     CONSTRAINT purchase_supplier_supplies_fk FOREIGN KEY (id_supplier, id_product, purchase_date)
-                        REFERENCES SUPPLIER_SUPPLIES(id_supplier, id_product, purchase_date)
+                    REFERENCES SUPPLIER_SUPPLIES(id_supplier, id_product, purchase_date)
                 );\s
             """;
     }

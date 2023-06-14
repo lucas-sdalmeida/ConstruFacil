@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.view.CustomerUI">
+   <children>
+      <Button fx:id="bBack" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Voltar" />
+      <Button fx:id="bSave" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" text="Salvar" />
+      <Label layoutX="447.0" layoutY="32.0" text="ID:" />
+      <Label layoutX="34.0" layoutY="32.0" text="Nome:" />
+      <Label layoutX="442.0" layoutY="70.0" text="CPF:" />
+      <Label layoutX="34.0" layoutY="70.0" text="Endereço:" />
+      <Label layoutX="36.0" layoutY="109.0" text="Telefone:" />
+      <TextField fx:id="txtName" layoutX="79.0" layoutY="28.0" prefHeight="26.0" prefWidth="352.0" />
+      <TextField fx:id="txtID" layoutX="465.0" layoutY="28.0" prefHeight="26.0" prefWidth="107.0" />
+      <TextField fx:id="txtCPF" layoutX="467.0" layoutY="66.0" prefHeight="26.0" prefWidth="107.0" />
+      <TextField fx:id="txtAddress" layoutX="94.0" layoutY="66.0" prefHeight="26.0" prefWidth="338.0" />
+      <TextField fx:id="txtPhone" layoutX="86.0" layoutY="105.0" prefHeight="26.0" prefWidth="178.0" />
+   </children>
+</AnchorPane>
