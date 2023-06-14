@@ -3,17 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.view.SupplierUI">
+<AnchorPane prefHeight="133.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.view.SupplierUI">
    <children>
-      <TextField fx:id="txtCorporateName" layoutX="129.0" layoutY="14.0" prefHeight="26.0" prefWidth="450.0" />
+      <TextField fx:id="txtCorporateName" layoutX="129.0" layoutY="14.0" prefHeight="26.0" prefWidth="218.0" />
       <Label layoutX="21.0" layoutY="18.0" text="Nome Corporativo:" />
-      <Label layoutX="310.0" layoutY="57.0" text="CNPJ:" />
-      <Label layoutX="135.0" layoutY="58.0" text="Phone:" />
-      <Label layoutX="21.0" layoutY="58.0" text="ID:" />
-      <TextField fx:id="txtID" layoutX="42.0" layoutY="54.0" prefHeight="26.0" prefWidth="82.0" />
-      <TextField fx:id="txtPhone" layoutX="180.0" layoutY="53.0" prefHeight="26.0" prefWidth="116.0" />
-      <TextField fx:id="txtCNPJ" layoutX="348.0" layoutY="53.0" prefHeight="26.0" prefWidth="227.0" />
-      <Button fx:id="bSave" layoutX="523.0" layoutY="361.0" mnemonicParsing="false" text="Salvar" />
-      <Button fx:id="bBack" layoutX="16.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Votlar" />
+      <Label layoutX="207.0" layoutY="56.0" text="CNPJ:" />
+      <Label layoutX="21.0" layoutY="57.0" text="Phone:" />
+      <TextField fx:id="txtPhone" layoutX="65.0" layoutY="52.0" prefHeight="26.0" prefWidth="116.0" />
+      <TextField fx:id="txtCNPJ" layoutX="248.0" layoutY="51.0" prefHeight="26.0" prefWidth="102.0" />
+      <Button fx:id="bSave" layoutX="72.0" layoutY="90.0" mnemonicParsing="false" onAction="#save" text="Salvar" />
+      <Button fx:id="bBack" layoutX="15.0" layoutY="90.0" mnemonicParsing="false" onAction="#back" text="Votlar" />
    </children>
 </AnchorPane>
