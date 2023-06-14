@@ -19,7 +19,7 @@ public class MainUI {
     }
 
     public void goToProduct(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("PurchaseManegementUI");
+        WindowLoader.setRoot("ProductManegementUI");
     }
 
     public void goToSale(ActionEvent actionEvent) throws IOException {

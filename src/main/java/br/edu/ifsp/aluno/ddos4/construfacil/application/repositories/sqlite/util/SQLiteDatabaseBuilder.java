@@ -62,7 +62,7 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
                     id_product INTEGER PRIMARY KEY AUTOINCREMENT,\s
                     name VARCHAR(100) NOT NULL,\s
                     quantity NUMBER NOT NULL,\s
-                    average_Purchase_Price NUMBER,\s
+                    average_purchase_price NUMBER,\s
                     status VARCHAR(10) NOT NULL DEFAULT 'ACTIVE',\s
                     
                     CONSTRAINT name_un UNIQUE (name),\s

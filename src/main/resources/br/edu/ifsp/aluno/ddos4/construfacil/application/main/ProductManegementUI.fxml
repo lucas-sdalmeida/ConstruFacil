@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.ProductManegementUI">
+   <children>
+      <TableView fx:id="tTable" layoutX="32.0" layoutY="14.0" prefHeight="336.0" prefWidth="532.0">
+        <columns>
+          <TableColumn fx:id="cID" prefWidth="32.19997787475586" text="ID" />
+          <TableColumn fx:id="cName" prefWidth="177.80001831054688" text="Nome" />
+            <TableColumn fx:id="cAvaregePurchase" prefWidth="135.00001525878906" text="Preço médio de compra" />
+            <TableColumn fx:id="cQuantity" minWidth="0.0" prefWidth="83.79998779296875" text="quantidade" />
+            <TableColumn fx:id="cStatus" prefWidth="100.79998779296875" text="status" />
+        </columns>
+      </TableView>
+      <Button fx:id="bInsert" layoutX="512.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertProduct" text="Inserir" />
+      <Button fx:id="bEdit" layoutX="451.0" layoutY="361.0" mnemonicParsing="false" onAction="#editProduct" text="Editar" />
+      <Button fx:id="bBack" layoutX="32.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Voltar" />
+   </children>
+</AnchorPane>
