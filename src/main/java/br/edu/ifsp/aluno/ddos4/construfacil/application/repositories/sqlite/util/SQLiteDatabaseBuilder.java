@@ -96,7 +96,7 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
                     id_product INTEGER NOT NULL,\s
                     purchase_date TIMESTAMP NOT NULL,
                     
-                    CONSTRAINT purchase_pk PRIMARY KEY (id_purchase),
+                    CONSTRAINT purchase_pk PRIMARY KEY (id_purchase, id_product),
                     CONSTRAINT purchase_supplier_supplies_fk FOREIGN KEY (id_supplier, id_product, purchase_date)
                     REFERENCES SUPPLIER_SUPPLIES(id_supplier, id_product, purchase_date)
                 );\s
@@ -138,6 +138,7 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
                     id_product INTEGER NOT NULL,\s
                     sale_date TIMESTAMP NOT NULL,CONSTRAINT sale_pk PRIMARY KEY (id_sale),
                 
+                    CONSTRAINT sale_pk PRIMARY KEY (id_sale, id_product),\s
                     CONSTRAINT sale_customer_buys_fk FOREIGN KEY (id_product, id_customer, sale_date)
                         REFERENCES CUSTOMER_BUYS(id_product, id_customer, sale_date)
                 );\s
