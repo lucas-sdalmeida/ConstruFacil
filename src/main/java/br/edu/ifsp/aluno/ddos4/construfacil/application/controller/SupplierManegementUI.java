@@ -70,11 +70,11 @@ public class SupplierManegementUI {
     public void insertOrUpdateCustomer(ActionEvent actionEvent) throws IOException{
         Button clickButton = (Button) actionEvent.getSource();
         if(clickButton == bInsert) {
-            WindowLoader.setRoot("CustomerUI");
+            WindowLoader.setRoot("SupplierUI");
             System.out.println("Foi selecionado a opção: Inserir");
         }
         if(clickButton == bUpdate) {
-            WindowLoader.setRoot("CustomerUI");
+            WindowLoader.setRoot("SupplierUI");
             System.out.println("Foi selecionado a opção: Atualizar");
         }
     }
