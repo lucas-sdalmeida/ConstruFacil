@@ -3,14 +3,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="tTable" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.SupplierManegementUI">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.aluno.ddos4.construfacil.application.controller.SupplierManegementUI">
    <children>
-      <TableView layoutX="21.0" layoutY="14.0" prefHeight="329.0" prefWidth="562.0">
+      <TableView fx:id="tTable" layoutX="21.0" layoutY="14.0" prefHeight="329.0" prefWidth="562.0">
         <columns>
           <TableColumn fx:id="cIDSupplier" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="cCorporateName" prefWidth="224.00003814697266" text="Nome Corporativo" />
-            <TableColumn fx:id="cCNPJ" prefWidth="137.5999755859375" text="CNPJ" />
-            <TableColumn fx:id="cPhoneNumberSupplier" prefWidth="123.20000610351565" text="Telefone" />
+            <TableColumn fx:id="cCNPJ" prefWidth="60.60003662109375" text="CNPJ" />
+            <TableColumn fx:id="cPhoneNumberSupplier" prefWidth="123.5999755859375" text="Telefone" />
+            <TableColumn fx:id="cStatus" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
       <Button fx:id="bNew" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertSupplier" text="Inserir" />
