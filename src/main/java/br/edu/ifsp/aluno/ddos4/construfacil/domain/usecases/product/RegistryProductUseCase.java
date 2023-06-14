@@ -30,7 +30,7 @@ public class RegistryProductUseCase {
                 });
 
         productDAO.save(product);
-        long productId = productDAO.findOneByKey(product.getId())
+        long productId = productDAO.findOneByName(product.getName())
                             .orElseThrow(() -> new EntityNotFoundException("The product has not been registred!"))
                             .getId();
         product.setId(productId);
