@@ -9,4 +9,12 @@ public class CustomerManegementUI {
     public void back(ActionEvent actionEvent) throws IOException {
         WindowLoader.setRoot("MainUI");
     }
+
+    public void insertCustomer(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("CustomerUI");
+    }
+
+    public void updateCustomer(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("CustomerUI");
+    }
 }

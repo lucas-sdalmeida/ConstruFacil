@@ -16,7 +16,7 @@
             <TreeTableColumn fx:id="cStatus" prefWidth="66.20004272460938" text="Status" />
         </columns>
       </TreeTableView>
-      <Button fx:id="bInsert" layoutX="531.0" layoutY="361.0" mnemonicParsing="false" text="Inserir" />
-      <Button fx:id="bUpdate" layoutX="456.0" layoutY="361.0" mnemonicParsing="false" text="Atualizar" />
+      <Button fx:id="bInsert" layoutX="531.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertCustomer" text="Inserir" />
+      <Button fx:id="bUpdate" layoutX="456.0" layoutY="361.0" mnemonicParsing="false" onAction="#updateCustomer" text="Atualizar" />
    </children>
 </AnchorPane>

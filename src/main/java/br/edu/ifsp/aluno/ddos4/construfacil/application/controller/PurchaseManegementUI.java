@@ -6,10 +6,12 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 public class PurchaseManegementUI {
-    public void insertPurchase(ActionEvent actionEvent) {
+    public void insertPurchase(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("PurchaseUI");
     }
 
-    public void updatePurchase(ActionEvent actionEvent) {
+    public void updatePurchase(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("PurchaseUI");
     }
 
     public void back(ActionEvent actionEvent) throws IOException {

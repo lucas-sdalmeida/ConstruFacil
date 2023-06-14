@@ -6,10 +6,12 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 
 public class SaleManegementUI {
-    public void insertSale(ActionEvent actionEvent) {
+    public void insertSale(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("SaleUI");
     }
 
-    public void updateSale(ActionEvent actionEvent) {
+    public void updateSale(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("SaleUI");
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
