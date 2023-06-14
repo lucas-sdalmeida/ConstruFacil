@@ -7,6 +7,7 @@ module br.edu.ifsp.aluno.ddos.construfacil {
 
     opens br.edu.ifsp.aluno.ddos4.construfacil.application.main to javafx.fxml;
 
+    opens br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.cashdesk to javafx.base;
     opens br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.customer to javafx.base;
     opens br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.purchase to javafx.base;
     opens br.edu.ifsp.aluno.ddos4.construfacil.domain.entities.sale to javafx.base;

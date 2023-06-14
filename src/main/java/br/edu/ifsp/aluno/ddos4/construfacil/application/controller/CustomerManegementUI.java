@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +32,14 @@ public class CustomerManegementUI {
     private TableColumn<Customer, String> cStatus;
     @FXML
     private TableColumn<Customer, String> cAddress;
+
+    @FXML
+    private Button bInsert;
+    @FXML
+    private Button bUpdate;
+
+    @FXML
+    private Button button;
 
     private ObservableList<Customer> tableData;
 
@@ -68,11 +77,15 @@ public class CustomerManegementUI {
         WindowLoader.setRoot("MainUI");
     }
 
-    public void insertCustomer(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("CustomerUI");
-    }
-
-    public void updateCustomer(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("CustomerUI");
+    public void insertOrUpdateCustomer(ActionEvent actionEvent) throws IOException{
+        Button clickButton = (Button) actionEvent.getSource();
+        if(clickButton == bInsert) {
+            WindowLoader.setRoot("CustomerUI");
+            System.out.println("Foi selecionado a opção: Inserir");
+        }
+        if(clickButton == bUpdate) {
+            WindowLoader.setRoot("CustomerUI");
+            System.out.println("Foi selecionado a opção: Atualizar");
+        }
     }
 }

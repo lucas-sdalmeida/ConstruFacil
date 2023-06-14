@@ -14,8 +14,8 @@
             <TableColumn fx:id="cStatus" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
-      <Button fx:id="bNew" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertSupplier" text="Inserir" />
-      <Button fx:id="bEdit" layoutX="483.0" layoutY="361.0" mnemonicParsing="false" onAction="#updateSupplier" text="Editar" />
+      <Button fx:id="bInsert" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertOrUpdateCustomer" text="Inserir" />
+      <Button fx:id="bUpdate" layoutX="483.0" layoutY="361.0" mnemonicParsing="false" onAction="#insertOrUpdateCustomer" text="Editar" />
       <Button fx:id="bBack" layoutX="21.0" layoutY="361.0" mnemonicParsing="false" onAction="#back" text="Voltar" />
    </children>
 </AnchorPane>
