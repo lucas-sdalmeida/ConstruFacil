@@ -17,13 +17,13 @@ public class ProductSQLiteDAO implements ProductDAO{
     @Override
     public void save(Product product) {
         String sql = "INSERT INTO product (name, quantity, average_purchase_price) " +
-                            "VALUES (?, ?, 0)";
+                            "VALUES (?, ?, ?)";
         SQLiteConnectionFactory connectionFactory = new SQLiteConnectionFactory();
 
         try(PreparedStatement stmt = connectionFactory.getPreparedStatement(sql)) {
             stmt.setString(1, product.getName());
             stmt.setLong(2, product.getStockQuantity());
-
+            stmt.setLong(3, product.getAveragePurchasePriceInCents());
             stmt.executeUpdate();
         }
         catch (SQLException e){

@@ -51,6 +51,7 @@ public final class SQLiteDatabaseBuilder implements DataBaseBuilder {
                     address VARCHAR(100),\s
                     phone_Number VARCHAR(20),\s
                     status VARCHAR(10) DEFAULT 'ACTIVE',\s
+                    
                     CONSTRAINT cpf_un UNIQUE (CPF)
                 );
             """;
